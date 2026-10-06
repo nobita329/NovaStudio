@@ -1,0 +1,662 @@
+/* Nova — Next-Gen Console Stylesheet */
+
+/* Main Layout & Header */
+.nova-console-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.nova-title-wrap {
+  flex: 1;
+  min-width: 280px;
+}
+
+.nova-server-title {
+  font-size: 1.65rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+  font-family: var(--font-sans);
+}
+
+.nova-server-subtitle {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* Power Control Buttons */
+.nova-power-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-power-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.825rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  font-family: var(--font-sans);
+  line-height: 1;
+}
+
+.btn-power-start {
+  background: #f59e0b;
+  color: #0b0f17;
+  border-color: #d97706;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.25);
+}
+
+.btn-power-start:hover {
+  background: #fbbf24;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35);
+}
+
+.btn-power-restart {
+  background: #1e293b;
+  color: #f1f5f9;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.btn-power-restart:hover {
+  background: #334155;
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.btn-power-stop {
+  background: #ef4444;
+  color: #ffffff;
+  border-color: #dc2626;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.25);
+}
+
+.btn-power-stop:hover {
+  background: #f87171;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.35);
+}
+
+.btn-power-kill {
+  background: #1e293b;
+  color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.3);
+  padding: 0.5rem 0.65rem;
+}
+
+.btn-power-kill:hover {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: #ef4444;
+}
+
+/* Two-Column Mid Section */
+.nova-middle-grid {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+@media (max-width: 1024px) {
+  .nova-middle-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Terminal Container Window */
+.nova-terminal-window {
+  background: #06090e;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+.nova-terminal-window.autofit {
+  height: 650px;
+}
+
+/* Terminal Header */
+.terminal-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0.9rem;
+  background: #0d121c;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  user-select: none;
+}
+
+.terminal-title-area {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.mac-dots {
+  display: flex;
+  gap: 0.35rem;
+  align-items: center;
+}
+
+.mac-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-red { background: #ef4444; }
+.dot-yellow { background: #f59e0b; }
+.dot-green { background: #10b981; }
+
+.terminal-heading {
+  font-size: 0.785rem;
+  color: #94a3b8;
+  font-family: var(--font-mono);
+  font-weight: 500;
+}
+
+/* Terminal Toolbar Controls */
+.terminal-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.term-btn {
+  background: #161d2b;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #cbd5e1;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.25rem 0.55rem;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: all 0.15s ease;
+  font-family: var(--font-sans);
+}
+
+.term-btn:hover {
+  background: #222d42;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.term-size-badge {
+  font-size: 0.725rem;
+  font-family: var(--font-mono);
+  color: #38bdf8;
+  background: #091220;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  padding: 0.22rem 0.45rem;
+  border-radius: 4px;
+}
+
+/* Terminal Output Box */
+.terminal-screen {
+  flex: 1;
+  min-height: 420px;
+  max-height: 520px;
+  padding: 0.85rem 1rem;
+  overflow-y: auto;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.55;
+  color: #e2e8f0;
+  white-space: pre-wrap;
+  word-break: break-all;
+  background: #06090e;
+}
+
+.nova-terminal-window.autofit .terminal-screen {
+  max-height: none;
+  min-height: 580px;
+}
+
+/* Terminal Custom Scrollbar */
+.terminal-screen::-webkit-scrollbar {
+  width: 7px;
+}
+.terminal-screen::-webkit-scrollbar-track {
+  background: #06090e;
+}
+.terminal-screen::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+.terminal-screen::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Terminal Prompt & Input Row */
+.terminal-input-bar {
+  display: flex;
+  align-items: center;
+  padding: 0.6rem 0.85rem;
+  background: #090e17;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  gap: 0.6rem;
+}
+
+.term-prompt-chevron {
+  color: #38bdf8;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 700;
+  user-select: none;
+}
+
+.term-input-field {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  outline: none;
+  padding: 0.2rem 0;
+}
+
+.term-input-field::placeholder {
+  color: #475569;
+}
+
+/* Terminal Offline Placeholder UI */
+.terminal-screen.is-offline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #06090e;
+}
+
+.terminal-offline-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 1.5rem;
+  user-select: none;
+  width: 100%;
+}
+
+.terminal-offline-placeholder .offline-icon-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.28);
+  color: #ef4444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.15rem;
+}
+
+.terminal-offline-placeholder .offline-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin-bottom: 0.35rem;
+  font-family: var(--font-sans);
+  letter-spacing: -0.01em;
+}
+
+.terminal-offline-placeholder .offline-subtitle {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  font-family: var(--font-sans);
+}
+
+.terminal-input-bar.is-disabled {
+  opacity: 0.45;
+  background: #070b12;
+}
+
+.terminal-input-bar.is-disabled .term-prompt-chevron {
+  color: #475569;
+}
+
+.terminal-input-bar.is-disabled .term-input-field {
+  cursor: not-allowed;
+  color: #64748b;
+}
+
+/* Right Metric Cards Stack */
+.nova-metrics-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.nova-metric-card {
+  background: #10141f;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  padding: 0.65rem 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.nova-metric-card:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+  transform: translateX(2px);
+}
+
+.metric-icon-wrap {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  flex-shrink: 0;
+}
+
+.metric-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.metric-label {
+  font-size: 0.725rem;
+  color: #94a3b8;
+  font-weight: 500;
+  margin-bottom: 0.15rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.metric-value-text {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #ffffff;
+  font-family: var(--font-mono);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.metric-limit-dim {
+  color: #64748b;
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+/* Bottom Real-Time Sparkline Charts */
+.nova-charts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 900px) {
+  .nova-charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.nova-chart-card {
+  background: #10141f;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.chart-title {
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.chart-header-value {
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: #38bdf8;
+}
+
+.chart-canvas-wrap {
+  position: relative;
+  width: 100%;
+  height: 100px;
+}
+
+.sparkline-canvas {
+  width: 100%;
+  height: 100px;
+  display: block;
+}
+
+/* Custom Header Navbar Badges & Controls */
+.nova-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.nav-icon-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.nav-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.nav-icon-btn.logout-btn:hover {
+  color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.btn-admin-area {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.8rem;
+  background: rgba(139, 92, 246, 0.12);
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  color: #c084fc;
+  font-size: 0.775rem;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-admin-area:hover {
+  background: rgba(139, 92, 246, 0.22);
+  color: #e9d5ff;
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+.user-avatar-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.65rem 0.3rem 0.35rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  cursor: pointer;
+  color: #e2e8f0;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.user-avatar-letter {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #2563eb;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+/* Sidebar Custom Enhancements */
+.sidebar-header.nova-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.15rem;
+  height: auto;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.brand-crest {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.brand-text-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #fff;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.brand-server-name {
+  font-size: 0.72rem;
+  color: #64748b;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 170px;
+}
+
+/* Sidebar Active Gold Link */
+.sidebar-nav .nav-link.active-gold {
+  background: rgba(245, 158, 11, 0.12) !important;
+  color: #fbbf24 !important;
+  border: 1px solid rgba(245, 158, 11, 0.45) !important;
+  box-shadow: 0 0 14px rgba(245, 158, 11, 0.18) !important;
+}
+
+.sidebar-nav .nav-link.active-gold svg {
+  color: #f59e0b !important;
+}
+
+/* Sidebar System Engine Card */
+.sidebar-engine-card {
+  margin: auto 0.85rem 0.85rem 0.85rem;
+  background: #090d15;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+  padding: 0.75rem 0.85rem;
+}
+
+.engine-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  margin-bottom: 0.45rem;
+}
+
+.engine-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 6px #10b981;
+  display: inline-block;
+}
+
+.engine-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.725rem;
+  padding: 0.15rem 0;
+  font-family: var(--font-mono);
+}
+
+.engine-label {
+  color: #64748b;
+}
+
+.port-orange {
+  color: #f59e0b;
+  font-weight: 700;
+}
+
+.port-cyan {
+  color: #38bdf8;
+  font-weight: 700;
+}

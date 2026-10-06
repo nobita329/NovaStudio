@@ -1,0 +1,3133 @@
+{
+  "total_files": 623,
+  "by_extension": {
+    ".txt": 2,
+    ".html": 2,
+    ".md": 1,
+    ".php": 146,
+    ".js": 2,
+    ".ts": 162,
+    ".tsx": 269,
+    ".css": 12,
+    ".svg": 5,
+    ".png": 19,
+    ".mp3": 3
+  },
+  "file_list": [
+    {
+      "path": "readme.txt",
+      "size": 959,
+      "ext": ".txt"
+    },
+    {
+      "path": "readme.html",
+      "size": 2260,
+      "ext": ".html"
+    },
+    {
+      "path": "readme.md",
+      "size": 972,
+      "ext": ".md"
+    },
+    {
+      "path": "pterodactyl/app/Console/Commands/ArixLang.php",
+      "size": 1307,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/app/Console/Commands/arix.php",
+      "size": 7257,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/config/arixTheme.php",
+      "size": 64,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/tailwind.config.js",
+      "size": 2452,
+      "ext": ".js"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/routes/base.php",
+      "size": 954,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/routes/admin.php",
+      "size": 16362,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/routes/api-client.php",
+      "size": 11270,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/routes/auth.php",
+      "size": 2496,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Transformers/Api/Client/ServerFolderTransformer.php",
+      "size": 752,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Transformers/Api/Client/ServerTransformer.php",
+      "size": 6447,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Transformers/Api/Client/SubuserPresetTransformer.php",
+      "size": 714,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Transformers/Api/Client/TrashbinItemTransformer.php",
+      "size": 898,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Transformers/Api/Client/ApiKeyTransformer.php",
+      "size": 829,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Transformers/Api/Client/CommandHistoryTransformer.php",
+      "size": 595,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Transformers/Api/Client/UserTransformer.php",
+      "size": 1008,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Transformers/Api/Client/SubuserTransformer.php",
+      "size": 844,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Transformers/Api/Client/ServerOrderTransformer.php",
+      "size": 573,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Transformers/Api/Application/ServerVariableTransformer.php",
+      "size": 1316,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Transformers/Api/Application/BaseTransformer.php",
+      "size": 3383,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Transformers/Api/Application/SubuserTransformer.php",
+      "size": 2169,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Requests/Api/Client/UpdateServerOrderRequest.php",
+      "size": 560,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Requests/Api/Client/UpdateServerFolderRequest.php",
+      "size": 2206,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Requests/Api/Client/Account/UpdateLanguageRequest.php",
+      "size": 526,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Requests/Api/Client/Account/StoreApiKeyRequest.php",
+      "size": 1472,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Requests/Api/Client/Account/UpdateProfileRequest.php",
+      "size": 740,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Requests/Api/Client/Servers/CommandHistoryRequest.php",
+      "size": 530,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Requests/Api/Client/Servers/Subusers/SubuserPresetRequest.php",
+      "size": 2967,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Requests/Api/Client/Servers/Subusers/UpdateSubuserRequest.php",
+      "size": 482,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Requests/Api/Client/Servers/Subusers/StoreSubuserRequest.php",
+      "size": 543,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Requests/Api/Client/Servers/Files/TrashbinRequest.php",
+      "size": 1139,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Requests/Api/Client/Servers/Schedules/StoreTaskRequest.php",
+      "size": 2468,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Requests/Base/LocaleRequest.php",
+      "size": 638,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Requests/Admin/Settings/BaseSettingsFormRequest.php",
+      "size": 615,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Requests/Admin/Settings/AdvancedSettingsFormRequest.php",
+      "size": 2392,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Requests/Admin/Arix/ArixAnnouncementRequest.php",
+      "size": 1555,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Requests/Admin/Arix/ArixLinkRequest.php",
+      "size": 1540,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Requests/Admin/Arix/ArixSocialRequest.php",
+      "size": 788,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Requests/Admin/Arix/ArixStylingRequest.php",
+      "size": 1213,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Requests/Admin/Arix/ArixPresetRequest.php",
+      "size": 640,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Requests/Admin/Arix/ArixAdvancedRequest.php",
+      "size": 2172,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Requests/Admin/Arix/ArixComponentsRequest.php",
+      "size": 737,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Requests/Admin/Arix/ArixColorsRequest.php",
+      "size": 1398,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Requests/Admin/Arix/ArixRequest.php",
+      "size": 716,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Requests/Admin/Arix/ArixMailRequest.php",
+      "size": 2143,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Requests/Admin/Arix/ArixMetaRequest.php",
+      "size": 802,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Requests/Admin/Arix/ArixDashboardRequest.php",
+      "size": 508,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Requests/Admin/Arix/ArixLayoutRequest.php",
+      "size": 734,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Requests/Admin/Egg/EggFormRequest.php",
+      "size": 1699,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/ViewComposers/ArixConfiguration.php",
+      "size": 22411,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/ViewComposers/AssetComposer.php",
+      "size": 1045,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Middleware/SetSecurityHeaders.php",
+      "size": 1370,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Middleware/VerifyReCaptcha.php",
+      "size": 3472,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Middleware/Admin/Arix/ArixHandler.php",
+      "size": 1240,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Controllers/Controller.php",
+      "size": 394,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Controllers/Auth/AbstractRegisterController.php",
+      "size": 2953,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Controllers/Auth/ArixController.php",
+      "size": 776,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Controllers/Api/Client/SessionHistoryController.php",
+      "size": 944,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Controllers/Api/Client/ApiKeyController.php",
+      "size": 2556,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Controllers/Api/Client/ClientController.php",
+      "size": 8572,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Controllers/Api/Client/AccountController.php",
+      "size": 6016,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Controllers/Api/Client/ActivityLogController.php",
+      "size": 1824,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Controllers/Api/Client/Servers/CommandHistoryController.php",
+      "size": 2127,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Controllers/Api/Client/Servers/TrashbinController.php",
+      "size": 2598,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Controllers/Api/Client/Servers/GetSubscriptionController.php",
+      "size": 9867,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Controllers/Api/Client/Servers/SubuserPresetController.php",
+      "size": 3403,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Controllers/Api/Client/Servers/SubuserController.php",
+      "size": 6910,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Controllers/Api/Client/Servers/ActivityLogController.php",
+      "size": 3074,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Controllers/Base/LocaleController.php",
+      "size": 3314,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Controllers/Admin/Settings/IndexController.php",
+      "size": 1660,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Controllers/Admin/Arix/ArixMetaController.php",
+      "size": 2857,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Controllers/Admin/Arix/ArixLayoutController.php",
+      "size": 3046,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Controllers/Admin/Arix/ArixColorsController.php",
+      "size": 4368,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Controllers/Admin/Arix/ArixAnnouncementController.php",
+      "size": 3513,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Controllers/Admin/Arix/ArixLinkController.php",
+      "size": 6740,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Controllers/Admin/Arix/ArixAdvancedController.php",
+      "size": 9102,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Controllers/Admin/Arix/ArixPresetController.php",
+      "size": 6574,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Controllers/Admin/Arix/ArixController.php",
+      "size": 3014,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Controllers/Admin/Arix/ArixSocialController.php",
+      "size": 3054,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Controllers/Admin/Arix/ArixMailController.php",
+      "size": 3882,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Controllers/Admin/Arix/ArixComponentsController.php",
+      "size": 2925,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Controllers/Admin/Arix/ArixDashboardController.php",
+      "size": 2285,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Http/Controllers/Admin/Arix/ArixStylingController.php",
+      "size": 5191,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Services/Subusers/SubuserCreationService.php",
+      "size": 3091,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Services/Helpers/SoftwareVersionService.php",
+      "size": 3526,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Services/Servers/Files/TrashbinService.php",
+      "size": 6955,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Jobs/Schedule/RunTaskJob.php",
+      "size": 5592,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Models/SubuserPreset.php",
+      "size": 1074,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Models/User.php",
+      "size": 10249,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Models/ServerFolder.php",
+      "size": 763,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Models/Egg.php",
+      "size": 10042,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Models/CommandHistory.php",
+      "size": 1081,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Models/Subuser.php",
+      "size": 2619,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Models/Trashbin.php",
+      "size": 788,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Models/Node.php",
+      "size": 8651,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Models/Task.php",
+      "size": 4586,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Models/ServerOrder.php",
+      "size": 704,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Models/Server.php",
+      "size": 17207,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Models/Traits/HasAccessTokens.php",
+      "size": 1327,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Console/Kernel.php",
+      "size": 3358,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Console/Commands/Maintenance/CleanServerTrashbinCommand.php",
+      "size": 3201,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Console/Commands/Maintenance/PruneExpiredSubusersCommand.php",
+      "size": 1780,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Console/Commands/Maintenance/PruneExpiredApiKeysCommand.php",
+      "size": 958,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/app/Console/Commands/Maintenance/PruneArixSettingsCommand.php",
+      "size": 1006,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/database/migrations/2026_06_07_201941_add_tier_to_nodes.php",
+      "size": 608,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/database/migrations/2026_01_29_190810_add_language_set.php",
+      "size": 628,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/database/migrations/2026_03_31_142157_add_subuser_expiry.php",
+      "size": 631,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/database/migrations/2026_02_26_162801_create-server-folders.php",
+      "size": 1014,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/database/migrations/2026_03_26_175305_create_trashbin_table.php",
+      "size": 1108,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/database/migrations/2023_12_29_222415_add_alerts_to_node.php",
+      "size": 898,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/database/migrations/2023_10_16_001537_add_image_column_to_eggs_table.php",
+      "size": 602,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/database/migrations/2026_01_30_100202_create_server_order_table.php",
+      "size": 829,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/database/migrations/2026_03_31_183926_create_subuser_presets_table.php",
+      "size": 783,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/database/migrations/2025_12_10_135057_add_icon_to_node.php",
+      "size": 623,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/database/migrations/2026_03_01_132157_add_command_history.php",
+      "size": 745,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/views/manifest.blade.php",
+      "size": 745,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/views/layouts/admin.blade.php",
+      "size": 15591,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/views/admin/index.blade.php",
+      "size": 3257,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/views/admin/nodes/new.blade.php",
+      "size": 12598,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/views/admin/nodes/view/settings.blade.php",
+      "size": 19254,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/views/admin/settings/index.blade.php",
+      "size": 3599,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/views/admin/settings/advanced.blade.php",
+      "size": 11626,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/views/admin/eggs/view.blade.php",
+      "size": 15060,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/views/vendor/notifications/email-plain.blade.php",
+      "size": 415,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/views/vendor/notifications/email.blade.php",
+      "size": 18036,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/views/templates/wrapper.blade.php",
+      "size": 14800,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/views/templates/auth/core.blade.php",
+      "size": 171,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/views/templates/base/core.blade.php",
+      "size": 172,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/lang/en/arix/navigation.php",
+      "size": 1104,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/lang/en/arix/activity.php",
+      "size": 606,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/lang/en/arix/auth.php",
+      "size": 2846,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/lang/en/arix/dashboard.php",
+      "size": 1416,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/lang/en/arix/account.php",
+      "size": 6102,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/lang/en/arix/utilities.php",
+      "size": 1277,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/lang/en/arix/server/backups.php",
+      "size": 2118,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/lang/en/arix/server/users.php",
+      "size": 1624,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/lang/en/arix/server/startup.php",
+      "size": 496,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/lang/en/arix/server/network.php",
+      "size": 562,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/lang/en/arix/server/dashboard.php",
+      "size": 575,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/lang/en/arix/server/console.php",
+      "size": 660,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/lang/en/arix/server/settings.php",
+      "size": 1381,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/lang/en/arix/server/files.php",
+      "size": 3529,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/lang/en/arix/server/schedules.php",
+      "size": 4494,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/lang/en/arix/server/databases.php",
+      "size": 1705,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/helpers.ts",
+      "size": 1322,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/theme.ts",
+      "size": 299,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/easy-peasy.d.ts",
+      "size": 447,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/index.tsx",
+      "size": 764,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/modes.ts",
+      "size": 4541,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/macros.d.ts",
+      "size": 995,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/i18n.ts",
+      "size": 1578,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/setup-tests.ts",
+      "size": 36,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/globals.d.ts",
+      "size": 96,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/TransitionRouter.tsx",
+      "size": 862,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/routers/DashboardRouter.tsx",
+      "size": 5844,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/routers/ServerRouter.tsx",
+      "size": 11888,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/routers/RouterElements.tsx",
+      "size": 9895,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/routers/AuthenticationRouter.tsx",
+      "size": 7831,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/routers/AdminRouter.tsx",
+      "size": 10100,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/routers/routes.ts",
+      "size": 8102,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/routers/layouts/SlimBar.tsx",
+      "size": 7069,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/routers/layouts/NavigationBar.tsx",
+      "size": 8996,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/routers/layouts/LayoutWrapper.tsx",
+      "size": 2601,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/routers/layouts/PillBar.tsx",
+      "size": 582,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/routers/layouts/SideBar.tsx",
+      "size": 3859,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/routers/layouts/InformationBar.tsx",
+      "size": 10227,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/routers/layouts/NavigationLinks.tsx",
+      "size": 3691,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/routers/layouts/ClientDropdown.tsx",
+      "size": 3632,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/routers/layouts/IconBar.tsx",
+      "size": 4179,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/lib/objects.ts",
+      "size": 932,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/lib/formatters.spec.ts",
+      "size": 2135,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/lib/helpers.ts",
+      "size": 499,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/lib/objects.spec.ts",
+      "size": 757,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/lib/helpers.spec.ts",
+      "size": 1194,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/lib/strings.ts",
+      "size": 144,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/lib/strings.spec.ts",
+      "size": 440,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/lib/formatters.ts",
+      "size": 965,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/assets/tailwind.css",
+      "size": 59,
+      "ext": ".css"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/assets/images/not_found.svg",
+      "size": 7006,
+      "ext": ".svg"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/assets/images/server_restore.svg",
+      "size": 10961,
+      "ext": ".svg"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/assets/images/server_error.svg",
+      "size": 6514,
+      "ext": ".svg"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/assets/images/pterodactyl.svg",
+      "size": 12805,
+      "ext": ".svg"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/assets/images/server_installing.svg",
+      "size": 24008,
+      "ext": ".svg"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/assets/css/GlobalStylesheet.ts",
+      "size": 1776,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/context/ModalContext.ts",
+      "size": 557,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/context/FloatingContext.tsx",
+      "size": 600,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/state/flashes.ts",
+      "size": 1495,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/state/progress.ts",
+      "size": 713,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/state/hooks.ts",
+      "size": 351,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/state/settings.ts",
+      "size": 4423,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/state/user.ts",
+      "size": 1799,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/state/permissions.ts",
+      "size": 843,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/state/index.ts",
+      "size": 672,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/state/server/databases.ts",
+      "size": 1007,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/state/server/subusers.ts",
+      "size": 1952,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/state/server/files.ts",
+      "size": 2430,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/state/server/socket.ts",
+      "size": 578,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/state/server/index.ts",
+      "size": 3752,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/state/server/schedules.ts",
+      "size": 983,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/hoc/RequireServerPermission.tsx",
+      "size": 646,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/hoc/asModal.tsx",
+      "size": 3840,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/hoc/asDialog.tsx",
+      "size": 1121,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/__mocks__/file.ts",
+      "size": 35,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/interceptors.ts",
+      "size": 739,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/serverFolders.ts",
+      "size": 2850,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/getSystemPermissions.ts",
+      "size": 337,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/getServers.ts",
+      "size": 807,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/serverOrder.ts",
+      "size": 858,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/http.ts",
+      "size": 4437,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/transformers.ts",
+      "size": 3767,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/admin/Advanced.ts",
+      "size": 1431,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/admin/Link.ts",
+      "size": 1842,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/admin/Announcement.ts",
+      "size": 837,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/admin/Components.ts",
+      "size": 880,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/admin/Mail.ts",
+      "size": 1066,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/admin/Dashboard.ts",
+      "size": 646,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/admin/Preset.ts",
+      "size": 918,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/admin/General.ts",
+      "size": 714,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/admin/Seo.ts",
+      "size": 691,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/admin/Layouts.ts",
+      "size": 916,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/admin/Colors.ts",
+      "size": 1152,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/admin/Styling.ts",
+      "size": 1107,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/admin/Social.ts",
+      "size": 762,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/definitions/helpers.ts",
+      "size": 1613,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/definitions/index.d.ts",
+      "size": 1349,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/definitions/user/models.d.ts",
+      "size": 859,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/definitions/user/index.ts",
+      "size": 104,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/definitions/user/transformers.ts",
+      "size": 1841,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/activity.ts",
+      "size": 1430,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/getWebsocketToken.ts",
+      "size": 477,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/commandHistory.ts",
+      "size": 996,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/powerAction.ts",
+      "size": 601,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/getSubscriptionInfo.ts",
+      "size": 637,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/updateStartupVariable.ts",
+      "size": 439,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/reinstallServer.ts",
+      "size": 270,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/getServerResourceUsage.ts",
+      "size": 1226,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/getServer.ts",
+      "size": 4196,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/types.d.ts",
+      "size": 600,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/setSelectedDockerImage.ts",
+      "size": 204,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/renameServer.ts",
+      "size": 326,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/backups/getBackupDownloadUrl.ts",
+      "size": 322,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/backups/deleteBackup.ts",
+      "size": 287,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/backups/createServerBackup.ts",
+      "size": 557,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/backups/index.ts",
+      "size": 252,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/databases/rotateDatabasePassword.ts",
+      "size": 475,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/databases/getServerDatabases.ts",
+      "size": 1011,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/databases/createServerDatabase.ts",
+      "size": 706,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/databases/deleteServerDatabase.ts",
+      "size": 293,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/files/createDirectory.ts",
+      "size": 315,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/files/getFileContents.ts",
+      "size": 419,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/files/trashbin.ts",
+      "size": 1881,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/files/decompressFiles.ts",
+      "size": 460,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/files/renameFiles.ts",
+      "size": 379,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/files/chmodFiles.ts",
+      "size": 381,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/files/getFileUploadUrl.ts",
+      "size": 292,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/files/loadDirectory.ts",
+      "size": 812,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/files/saveFileContents.ts",
+      "size": 302,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/files/pullFile.ts",
+      "size": 363,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/files/compressFiles.ts",
+      "size": 621,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/files/getFileDownloadUrl.ts",
+      "size": 330,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/files/deleteFiles.ts",
+      "size": 328,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/files/copyFile.ts",
+      "size": 294,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/network/setPrimaryServerAllocation.ts",
+      "size": 374,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/network/createServerAllocation.ts",
+      "size": 348,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/network/setServerAllocationNotes.ts",
+      "size": 399,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/network/deleteServerAllocation.ts",
+      "size": 237,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/schedules/createOrUpdateSchedule.ts",
+      "size": 803,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/schedules/getServerSchedule.ts",
+      "size": 523,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/schedules/createOrUpdateScheduleTask.ts",
+      "size": 748,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/schedules/deleteScheduleTask.ts",
+      "size": 329,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/schedules/getServerSchedules.ts",
+      "size": 2085,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/schedules/deleteSchedule.ts",
+      "size": 293,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/schedules/triggerScheduleExecution.ts",
+      "size": 190,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/users/getServerSubusers.ts",
+      "size": 951,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/users/subuserPreset.ts",
+      "size": 1237,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/users/createOrUpdateSubuser.ts",
+      "size": 721,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/server/users/deleteSubuser.ts",
+      "size": 285,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/auth/register.ts",
+      "size": 1337,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/auth/loginCheckpoint.ts",
+      "size": 721,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/auth/login.ts",
+      "size": 1207,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/auth/performPasswordReset.ts",
+      "size": 803,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/auth/requestPasswordResetEmail.ts",
+      "size": 349,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/account/ssh-keys.ts",
+      "size": 1185,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/account/activity.ts",
+      "size": 1370,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/account/updateAccountEmail.ts",
+      "size": 288,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/account/deleteApiKey.ts",
+      "size": 274,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/account/getTwoFactorTokenData.ts",
+      "size": 403,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/account/createApiKey.ts",
+      "size": 803,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/account/updateAccountProfile.ts",
+      "size": 394,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/account/disableAccountTwoFactor.ts",
+      "size": 334,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/account/getApiKeys.ts",
+      "size": 874,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/account/updateAccountLanguage.ts",
+      "size": 269,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/account/sessions.ts",
+      "size": 1002,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/account/updateAccountPassword.ts",
+      "size": 511,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/account/enableAccountTwoFactor.ts",
+      "size": 241,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/swr/getServerAllocations.ts",
+      "size": 672,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/swr/getServerBackups.ts",
+      "size": 1111,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/api/swr/getServerStartup.ts",
+      "size": 1010,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/plugins/settingsPreviewUtils.ts",
+      "size": 1087,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/plugins/useEventListener.ts",
+      "size": 721,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/plugins/Websocket.ts",
+      "size": 3264,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/plugins/useSWRKey.ts",
+      "size": 1152,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/plugins/usePersistedState.ts",
+      "size": 685,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/plugins/previewHash.ts",
+      "size": 1386,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/plugins/useLocationHash.ts",
+      "size": 919,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/plugins/useFlash.ts",
+      "size": 883,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/plugins/usePermissions.ts",
+      "size": 1081,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/plugins/useDeepMemoize.ts",
+      "size": 346,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/plugins/useDeepCompareMemo.ts",
+      "size": 252,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/plugins/buildSettingsHash.ts",
+      "size": 2101,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/plugins/useSettingsDetector.ts",
+      "size": 2117,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/plugins/useFileManagerSwr.ts",
+      "size": 820,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/plugins/useDeepCompareEffect.ts",
+      "size": 270,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/plugins/useWebsocketEvent.ts",
+      "size": 855,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/plugins/arixRuntimeStyles.ts",
+      "size": 2500,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/plugins/useFilteredObject.ts",
+      "size": 890,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/plugins/FormPreviewHashSync.tsx",
+      "size": 1082,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/plugins/XtermScrollDownHelperAddon.ts",
+      "size": 2367,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/App.tsx",
+      "size": 6721,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/UserAvatar.tsx",
+      "size": 3936,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/MessageBox.tsx",
+      "size": 4362,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/NavigationBar.tsx",
+      "size": 3804,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/Avatar.tsx",
+      "size": 804,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/types.ts",
+      "size": 59,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/history.ts",
+      "size": 113,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/FlashMessageRender.tsx",
+      "size": 1484,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/admin/layouts/LayoutsContainer.tsx",
+      "size": 40430,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/admin/announcement/AnnouncementContainer.tsx",
+      "size": 12971,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/admin/preset/ExportDialog.tsx",
+      "size": 5109,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/admin/preset/ImportDialog.tsx",
+      "size": 6684,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/admin/preset/PresetContainer.tsx",
+      "size": 6115,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/admin/elements/SelectField.tsx",
+      "size": 2688,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/admin/elements/ColorField.tsx",
+      "size": 6928,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/admin/elements/IconMap.tsx",
+      "size": 3504,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/admin/elements/OptionField.tsx",
+      "size": 1911,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/admin/elements/EditorWrapper.tsx",
+      "size": 11905,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/admin/elements/SliderField.tsx",
+      "size": 2828,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/admin/elements/BorderedBox.tsx",
+      "size": 1110,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/admin/advanced/AdvancedContainer.tsx",
+      "size": 21199,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/admin/addons/AddonsContainer.tsx",
+      "size": 8619,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/admin/styling/StylingContainer.tsx",
+      "size": 32275,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/admin/social/SocialContainer.tsx",
+      "size": 13235,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/admin/dashboard/DashboardContainer.tsx",
+      "size": 11778,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/admin/colors/ColorsContainer.tsx",
+      "size": 27757,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/admin/seo/SeoContainer.tsx",
+      "size": 4894,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/admin/general/GeneralContainer.tsx",
+      "size": 5750,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/admin/mail/MailContainer.tsx",
+      "size": 15620,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/admin/mail/MailBuilder.tsx",
+      "size": 2565,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/admin/link/LinkContainer.tsx",
+      "size": 10183,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/admin/link/CategoryWrapper.tsx",
+      "size": 10547,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/admin/link/IconPicker.tsx",
+      "size": 7182,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/admin/link/NestSelector.tsx",
+      "size": 8884,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/admin/link/PermissionsSelector.tsx",
+      "size": 8103,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/admin/link/LinkEditors.tsx",
+      "size": 10629,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/admin/components/ConsoleBuilder.tsx",
+      "size": 8290,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/admin/components/ComponentsContainer.tsx",
+      "size": 27905,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/Icon.tsx",
+      "size": 787,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/Select.tsx",
+      "size": 1210,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/Translate.tsx",
+      "size": 349,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/AuthenticatedRoute.tsx",
+      "size": 978,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/CommandPalette.tsx",
+      "size": 14745,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/Button.tsx",
+      "size": 3736,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/Switch.tsx",
+      "size": 2802,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/Checkbox.tsx",
+      "size": 1439,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/SpinnerOverlay.tsx",
+      "size": 958,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/SwitchField.tsx",
+      "size": 1535,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/GreyRowBox.tsx",
+      "size": 695,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/Modal.tsx",
+      "size": 4962,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/ProgressBar.tsx",
+      "size": 2309,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/Input.tsx",
+      "size": 2546,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/ContentContainer.tsx",
+      "size": 282,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/FormikSwitch.tsx",
+      "size": 942,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/ErrorBoundary.tsx",
+      "size": 1673,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/ConfirmationModal.tsx",
+      "size": 1474,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/Can.tsx",
+      "size": 650,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/DatePicker.tsx",
+      "size": 5025,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/ItemList.tsx",
+      "size": 2968,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/ContentBox.tsx",
+      "size": 1060,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/Portal.tsx",
+      "size": 275,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/TitledGreyBox.tsx",
+      "size": 2213,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/PageContentBlock.tsx",
+      "size": 2973,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/HotkeyManager.tsx",
+      "size": 7499,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/SubNavigation.tsx",
+      "size": 816,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/CodemirrorEditor.tsx",
+      "size": 7733,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/InputError.tsx",
+      "size": 782,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/Pagination.tsx",
+      "size": 2656,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/TableList.tsx",
+      "size": 929,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/CopyOnClick.tsx",
+      "size": 2658,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/PermissionRoute.tsx",
+      "size": 819,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/InputSpinner.tsx",
+      "size": 919,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/Badge.tsx",
+      "size": 810,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/Fade.tsx",
+      "size": 3135,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/Code.tsx",
+      "size": 527,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/Field.tsx",
+      "size": 2376,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/Label.tsx",
+      "size": 255,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/ServerContentBlock.tsx",
+      "size": 1407,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/Announcement.tsx",
+      "size": 4874,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/DropdownMenu.tsx",
+      "size": 4624,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/Spinner.tsx",
+      "size": 1969,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/ServerSelector.tsx",
+      "size": 1985,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/FormikFieldWrapper.tsx",
+      "size": 1058,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/ScreenBlock.tsx",
+      "size": 3654,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/dialog/DialogIcon.tsx",
+      "size": 913,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/dialog/style.module.css",
+      "size": 800,
+      "ext": ".css"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/dialog/context.ts",
+      "size": 411,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/dialog/ConfirmationDialog.tsx",
+      "size": 861,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/dialog/Dialog.tsx",
+      "size": 5791,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/dialog/DialogFooter.tsx",
+      "size": 636,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/dialog/types.d.ts",
+      "size": 1132,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/dialog/index.ts",
+      "size": 441,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/activity/style.module.css",
+      "size": 327,
+      "ext": ".css"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/activity/ActivityLogMetaButton.tsx",
+      "size": 1367,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/activity/ActivityLogEntry.tsx",
+      "size": 6240,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/tooltip/Tooltip.tsx",
+      "size": 4190,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/alert/Alert.tsx",
+      "size": 993,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/alert/index.ts",
+      "size": 44,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/dropdown/DropdownItem.tsx",
+      "size": 1427,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/dropdown/style.module.css",
+      "size": 1171,
+      "ext": ".css"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/dropdown/Dropdown.tsx",
+      "size": 2116,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/dropdown/DropdownButton.tsx",
+      "size": 772,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/dropdown/index.ts",
+      "size": 96,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/table/PaginationFooter.tsx",
+      "size": 3152,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/button/style.module.css",
+      "size": 2147,
+      "ext": ".css"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/button/Button.tsx",
+      "size": 2412,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/button/types.ts",
+      "size": 315,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/button/index.ts",
+      "size": 102,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/inputs/Checkbox.tsx",
+      "size": 433,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/inputs/index.ts",
+      "size": 311,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/inputs/InputField.tsx",
+      "size": 711,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/inputs/styles.module.css",
+      "size": 853,
+      "ext": ".css"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/transitions/FadeTransition.tsx",
+      "size": 864,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/elements/transitions/index.ts",
+      "size": 261,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/ConflictStateRenderer.tsx",
+      "size": 1899,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/NodeAlert.tsx",
+      "size": 1061,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/CollapsibleConsole.tsx",
+      "size": 966,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/WebsocketHandler.tsx",
+      "size": 4947,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/UnpaidInvoiceAlert.tsx",
+      "size": 3537,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/events.ts",
+      "size": 610,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/TransferListener.tsx",
+      "size": 1241,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/LowResourcesAlert.tsx",
+      "size": 3182,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/PanelSounds.tsx",
+      "size": 1002,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/ServerActivityLogContainer.tsx",
+      "size": 14605,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/InstallListener.tsx",
+      "size": 1475,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/UptimeDuration.tsx",
+      "size": 573,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/backups/BackupContextMenu.tsx",
+      "size": 8613,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/backups/BackupContainer.tsx",
+      "size": 4670,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/backups/CreateBackupButton.tsx",
+      "size": 4714,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/backups/BackupRow.tsx",
+      "size": 5095,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/databases/DatabasesContainer.tsx",
+      "size": 4343,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/databases/CreateDatabaseButton.tsx",
+      "size": 4873,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/databases/DatabaseRow.tsx",
+      "size": 8399,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/databases/RotatePasswordButton.tsx",
+      "size": 1734,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/files/FileObjectRow.tsx",
+      "size": 4359,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/files/NewDirectoryButton.tsx",
+      "size": 4682,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/files/style.module.css",
+      "size": 468,
+      "ext": ".css"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/files/ChmodFileModal.tsx",
+      "size": 3236,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/files/SelectFileCheckbox.tsx",
+      "size": 1335,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/files/FileNameModal.tsx",
+      "size": 2046,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/files/DirectoryLoader.tsx",
+      "size": 4973,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/files/MassActionsBar.tsx",
+      "size": 5790,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/files/FileEditContainer.tsx",
+      "size": 7969,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/files/FileManagerStatus.tsx",
+      "size": 4460,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/files/RenameFileModal.tsx",
+      "size": 3168,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/files/UploadButton.tsx",
+      "size": 6224,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/files/FileDropdownMenu.tsx",
+      "size": 9113,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/files/FileManagerContainer.tsx",
+      "size": 14055,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/files/UploadFromUrl.tsx",
+      "size": 4877,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/files/MoveFileDialog.tsx",
+      "size": 7785,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/files/TrashbinDialog.tsx",
+      "size": 11880,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/files/FileManagerBreadcrumbs.tsx",
+      "size": 3204,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/files/UploadFolderButton.tsx",
+      "size": 6023,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/files/codeEditor/CodeEditorContainer.tsx",
+      "size": 11491,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/files/codeEditor/LoadFiles.tsx",
+      "size": 10602,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/files/codeEditor/CodemirrorEditor.tsx",
+      "size": 7884,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/files/codeEditor/FileEdit.tsx",
+      "size": 5331,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/files/codeEditor/actions/NewDirectoryButton.tsx",
+      "size": 4030,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/files/codeEditor/actions/CreateDropdown.tsx",
+      "size": 1882,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/files/codeEditor/actions/CreateFile.tsx",
+      "size": 3992,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/files/codeEditor/actions/UploadButton.tsx",
+      "size": 6222,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/files/codeEditor/actions/FileDropdownMenu.tsx",
+      "size": 9228,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/files/codeEditor/actions/UploadDropdown.tsx",
+      "size": 2116,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/files/codeEditor/actions/UploadFromUrl.tsx",
+      "size": 4803,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/files/codeEditor/actions/UploadFolderButton.tsx",
+      "size": 6122,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/startup/StartupContainer.tsx",
+      "size": 5783,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/startup/VariableBox.tsx",
+      "size": 6330,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/console/chart.ts",
+      "size": 4551,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/console/style.module.css",
+      "size": 1636,
+      "ext": ".css"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/console/ServerConsoleContainer.tsx",
+      "size": 3522,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/console/ChartBlock.tsx",
+      "size": 3437,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/console/StatBlock.tsx",
+      "size": 1891,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/console/SideGraphs.tsx",
+      "size": 156,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/console/FullConsoleContainer.tsx",
+      "size": 456,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/console/PowerButtons.tsx",
+      "size": 3414,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/console/Console.tsx",
+      "size": 25148,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/console/ServerGraphs.tsx",
+      "size": 9939,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/console/StatGraphs.tsx",
+      "size": 148,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/console/useServerGraphData.ts",
+      "size": 3555,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/console/ServerDetailsBlock.tsx",
+      "size": 5208,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/features/SteamDiskSpaceFeature.tsx",
+      "size": 3839,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/features/JavaVersionModalFeature.tsx",
+      "size": 4842,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/features/GSLTokenModalFeature.tsx",
+      "size": 3992,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/features/Features.tsx",
+      "size": 705,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/features/index.ts",
+      "size": 835,
+      "ext": ".ts"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/features/HytaleOauthRequireFeature.tsx",
+      "size": 2672,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/features/PIDLimitModalFeature.tsx",
+      "size": 4673,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/features/eula/EulaModalFeature.tsx",
+      "size": 3499,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/dashboard/Banner.tsx",
+      "size": 570,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/dashboard/InfoCardAdvanced.tsx",
+      "size": 5482,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/dashboard/SFTP.tsx",
+      "size": 2507,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/dashboard/SubscriptionInfo.tsx",
+      "size": 6537,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/dashboard/DashboardContainer.tsx",
+      "size": 4583,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/dashboard/InfoCard.tsx",
+      "size": 2521,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/settings/SettingsContainer.tsx",
+      "size": 5070,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/settings/ReinstallServerBox.tsx",
+      "size": 2962,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/settings/RenameServerBox.tsx",
+      "size": 3106,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/network/DeleteAllocationButton.tsx",
+      "size": 2022,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/network/NetworkContainer.tsx",
+      "size": 4427,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/network/AllocationRow.tsx",
+      "size": 4421,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/schedules/ScheduleEditContainer.tsx",
+      "size": 9702,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/schedules/DeleteScheduleButton.tsx",
+      "size": 2126,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/schedules/ScheduleContainer.tsx",
+      "size": 4028,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/schedules/NewTaskButton.tsx",
+      "size": 724,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/schedules/TaskDetailsModal.tsx",
+      "size": 12469,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/schedules/RunScheduleButton.tsx",
+      "size": 1744,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/schedules/ScheduleCheatsheetCards.tsx",
+      "size": 2747,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/schedules/ScheduleCronRow.tsx",
+      "size": 1766,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/schedules/ScheduleTaskRow.tsx",
+      "size": 6312,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/schedules/ScheduleRow.tsx",
+      "size": 2075,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/schedules/EditScheduleModal.tsx",
+      "size": 16172,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/users/RemoveSubuserButton.tsx",
+      "size": 2316,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/users/UserRow.tsx",
+      "size": 4256,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/users/PermissionRow.tsx",
+      "size": 1793,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/users/PermissionTitleBox.tsx",
+      "size": 2360,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/users/EditSubuserModal.tsx",
+      "size": 13523,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/users/UsersContainer.tsx",
+      "size": 4099,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/users/AddSubuserButton.tsx",
+      "size": 562,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/users/presets/PresetButton.tsx",
+      "size": 4158,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/server/users/presets/EditPresetModal.tsx",
+      "size": 5204,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/auth/ResetPasswordContainer.tsx",
+      "size": 4036,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/auth/LoginContainer.tsx",
+      "size": 8409,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/auth/ForgotPasswordContainer.tsx",
+      "size": 6758,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/auth/RegisterContainer.tsx",
+      "size": 8723,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/auth/LoginFormContainer.tsx",
+      "size": 5619,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/auth/LoginCheckpointContainer.tsx",
+      "size": 4152,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/AccountApiContainer.tsx",
+      "size": 4791,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/ApiKeyModal.tsx",
+      "size": 1304,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/AccountOverviewContainer.tsx",
+      "size": 2010,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/ServerRow.tsx",
+      "size": 8813,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/DashboardContainer.tsx",
+      "size": 3882,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/search/SearchContainer.tsx",
+      "size": 1316,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/search/SearchModal.tsx",
+      "size": 5484,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/activity/ActivityLogContainer.tsx",
+      "size": 11473,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/account/AccountApiContainer.tsx",
+      "size": 4746,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/account/ApiKeyModal.tsx",
+      "size": 1287,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/account/AccountOverviewContainer.tsx",
+      "size": 595,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/account/AccountSecurityContainer.tsx",
+      "size": 5032,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/account/forms/UpdatePasswordForm.tsx",
+      "size": 5949,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/account/forms/UpdateEmailAddressForm.tsx",
+      "size": 4960,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/account/forms/UpdateProfileForm.tsx",
+      "size": 7009,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/account/forms/RecoveryTokensDialog.tsx",
+      "size": 1986,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/account/forms/AppearanceWrapper.tsx",
+      "size": 8701,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/account/forms/CreateApiKeyForm.tsx",
+      "size": 5452,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/account/forms/ConfigureTwoFactorForm.tsx",
+      "size": 2612,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/account/forms/DisableTOTPDialog.tsx",
+      "size": 3105,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/account/forms/SetupTOTPDialog.tsx",
+      "size": 5438,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/forms/UpdatePasswordForm.tsx",
+      "size": 4004,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/forms/UpdateEmailAddressForm.tsx",
+      "size": 2882,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/forms/RecoveryTokensDialog.tsx",
+      "size": 1967,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/forms/CreateApiKeyForm.tsx",
+      "size": 3508,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/forms/ConfigureTwoFactorForm.tsx",
+      "size": 2059,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/forms/DisableTOTPDialog.tsx",
+      "size": 2908,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/forms/SetupTOTPDialog.tsx",
+      "size": 5357,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/dashboard/LinearCardBanner.tsx",
+      "size": 15991,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/dashboard/ServerCardCompact.tsx",
+      "size": 4045,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/dashboard/ServerCardBanner.tsx",
+      "size": 9544,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/dashboard/ServerCard.tsx",
+      "size": 8978,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/dashboard/DiscordWidget.tsx",
+      "size": 1187,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/dashboard/FolderDialogs.tsx",
+      "size": 7458,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/dashboard/SocialButton.tsx",
+      "size": 1588,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/dashboard/ServerRow.tsx",
+      "size": 8434,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/dashboard/MassAction.tsx",
+      "size": 11121,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/dashboard/SortableServerCard.tsx",
+      "size": 8593,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/dashboard/ServerCardMinimal.tsx",
+      "size": 9685,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/dashboard/ServerCardGradient.tsx",
+      "size": 10083,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/dashboard/DashboardContainer.tsx",
+      "size": 22602,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/ssh/AccountSSHContainer.tsx",
+      "size": 3333,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/ssh/DeleteSSHKeyButton.tsx",
+      "size": 1780,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/resources/scripts/components/dashboard/ssh/CreateSSHKeyForm.tsx",
+      "size": 5021,
+      "ext": ".tsx"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/config/arix.php",
+      "size": 4839,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/config/app.php",
+      "size": 9303,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/config/turnstile.php",
+      "size": 95,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/config/recaptcha.php",
+      "size": 1085,
+      "ext": ".php"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/public/robots.txt",
+      "size": 0,
+      "ext": ".txt"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/public/offline.html",
+      "size": 1602,
+      "ext": ".html"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/public/sw.js",
+      "size": 2183,
+      "ext": ".js"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/public/arix/Arix.png",
+      "size": 211651,
+      "ext": ".png"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/public/arix/online.mp3",
+      "size": 50880,
+      "ext": ".mp3"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/public/arix/minecraft-banner.png",
+      "size": 1835159,
+      "ext": ".png"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/public/arix/copy.mp3",
+      "size": 74396,
+      "ext": ".mp3"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/public/arix/background-login.png",
+      "size": 3982900,
+      "ext": ".png"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/public/arix/offline.mp3",
+      "size": 45975,
+      "ext": ".mp3"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/public/arix/dashboard/graphs.png",
+      "size": 61491,
+      "ext": ".png"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/public/arix/dashboard/billing.png",
+      "size": 58873,
+      "ext": ".png"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/public/arix/dashboard/sideGraphs.png",
+      "size": 57956,
+      "ext": ".png"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/public/arix/dashboard/info.png",
+      "size": 43990,
+      "ext": ".png"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/public/arix/dashboard/subscription.png",
+      "size": 57883,
+      "ext": ".png"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/public/arix/dashboard/SFTP.png",
+      "size": 70403,
+      "ext": ".png"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/public/arix/dashboard/banner.png",
+      "size": 1183101,
+      "ext": ".png"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/public/arix/dashboard/statCards.png",
+      "size": 48052,
+      "ext": ".png"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/public/arix/dashboard/infoAdvanced.png",
+      "size": 69858,
+      "ext": ".png"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/public/arix/v2/styling/FlashMessageGlassy.png",
+      "size": 113872,
+      "ext": ".png"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/public/arix/v2/styling/backgroundTranslucent.png",
+      "size": 53301,
+      "ext": ".png"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/public/arix/v2/styling/backgroundDefault.png",
+      "size": 123107,
+      "ext": ".png"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/public/arix/v2/styling/blurFalse.png",
+      "size": 96877,
+      "ext": ".png"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/public/arix/v2/styling/FlashMessageDefault.png",
+      "size": 46946,
+      "ext": ".png"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/public/arix/v2/styling/backgroundFaded.png",
+      "size": 114836,
+      "ext": ".png"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/public/arix/v2/styling/blurTrue.png",
+      "size": 51781,
+      "ext": ".png"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/public/themes/pterodactyl/css/checkbox.css",
+      "size": 6871,
+      "ext": ".css"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/public/themes/pterodactyl/css/arix.css",
+      "size": 19550,
+      "ext": ".css"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/public/themes/pterodactyl/css/terminal.css",
+      "size": 3064,
+      "ext": ".css"
+    },
+    {
+      "path": "pterodactyl/arix/v2.1.3/public/themes/pterodactyl/css/pterodactyl.css",
+      "size": 17228,
+      "ext": ".css"
+    }
+  ]
+}

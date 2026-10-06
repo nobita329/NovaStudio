@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  # Nova Panel MariaDB (Port 3002)
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
+    restart: unless-stopped
+    ports:
+      - "3002:3306"
+    environment:
+      MARIADB_ROOT_PASSWORD: Nova
+      MARIADB_DATABASE: Nova
+      MARIADB_USER: Nova
+      MARIADB_PASSWORD: NovaStudio
+    volumes:
+      - mariadb_data:/var/lib/mysql
+
+  # Server User MySQL Host (Port 3005)
+  mysql:
+    image: mysql:8.4
+    container_name: mysql-serverdb
+    restart: unless-stopped
+    ports:
+      - "3005:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: YourStrongPassword
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: YourUserPassword
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mariadb_data:
+  mysql_data:

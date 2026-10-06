@@ -1,0 +1,1241 @@
+/**
+ * Arix Theme v2.1.3 — Master Integration Stylesheet
+ * Authentic Arix v2.1.3 Design Architecture
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Rubik:wght@300;400;500;600&display=swap');
+@import url('/assets/css/arix/checkbox.css');
+@import url('/assets/css/arix/terminal.css');
+@import url('/assets/css/arix/arix.css');
+
+/* -------------------------------------------------------------------------- */
+/* 1. Authentic Arix v2.1.3 Design Tokens (CSS Variables)                     */
+/* -------------------------------------------------------------------------- */
+:root {
+  /* Core Arix Brand */
+  --primary: #4A35CF;
+  --primary-rgb: 74, 53, 207;
+  --primary-border: #7562f0;
+  --primary-hover: #5d48e0;
+  --primary-active: #3b28b5;
+
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-header: 'IBM Plex Sans', 'Rubik', sans-serif;
+  --font-mono: 'IBM Plex Mono', Menlo, Monaco, Consolas, monospace;
+
+  /* Geometry & Radius */
+  --radiusInput: 7px;
+  --radiusBox: 10px;
+  --radius-sm: 5px;
+  --radius-md: 7px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
+  --backdropPercentage: 90%;
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Arix Dark Mode Color Palette (Default) */
+  --gray50: 244, 244, 244;
+  --gray100: 213, 213, 219;
+  --gray200: 178, 178, 193;
+  --gray300: 130, 130, 164;
+  --gray400: 94, 94, 127;
+  --gray500: 66, 66, 91;
+  --gray600: 43, 43, 64;
+  --gray700: 29, 29, 55;
+  --gray800: 11, 13, 42;
+  --gray900: 4, 5, 25;
+
+  /* Status Colors */
+  --successText: #E1FFD8;
+  --successBorder: #56AA2B;
+  --successBackground: #3D8F1F;
+
+  --dangerText: #FFD8D8;
+  --dangerBorder: #AA2A2A;
+  --dangerBackground: #8F1F20;
+
+  --warningText: #FFF4D8;
+  --warningBorder: #D97706;
+  --warningBackground: #B45309;
+
+  --secondaryText: #B2B2C1;
+  --secondaryBorder: #42425B;
+  --secondaryBackground: #2B2B40;
+
+  /* Mapped Theme Variables */
+  --bg-main: rgb(var(--gray900));
+  --bg-surface: rgb(var(--gray800));
+  --bg-card: rgb(var(--gray700));
+  --bg-card-hover: rgb(var(--gray600));
+  --border-color: rgb(var(--gray500));
+  --border-focus: var(--primary);
+  --text-main: rgb(var(--gray50));
+  --text-muted: rgb(var(--gray300));
+  --text-dim: rgb(var(--gray400));
+  --header: rgb(var(--gray100));
+
+  --sidebar-width: 260px;
+  --header-height: 64px;
+
+  /* Compatibility bindings */
+  --accent-blue: var(--primary-border);
+  --accent-primary: var(--primary);
+  --accent-primary-hover: var(--primary-hover);
+  --accent-success: var(--successBorder);
+  --accent-warning: var(--warningBorder);
+  --accent-danger: var(--dangerBorder);
+  --accent-purple: #8b5cf6;
+}
+
+/* Light Mode Overrides */
+.lightmode {
+  --gray50: 20, 20, 21;
+  --gray100: 39, 39, 44;
+  --gray200: 70, 70, 77;
+  --gray300: 98, 98, 114;
+  --gray400: 117, 118, 137;
+  --gray500: 166, 167, 189;
+  --gray600: 192, 192, 211;
+  --gray700: 231, 231, 239;
+  --gray800: 240, 241, 245;
+  --gray900: 255, 255, 255;
+
+  --bg-main: #F4F5F9;
+  --bg-surface: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F0F1F7;
+  --border-color: #E2E4EE;
+  --text-main: #141415;
+  --text-muted: #626272;
+  --text-dim: #757689;
+  --header: #27272C;
+}
+
+/* OLED Pure Black Mode */
+.oled {
+  --gray700: 8, 8, 8;
+  --gray800: 0, 0, 0;
+  --gray900: 0, 0, 0;
+  --bg-main: #000000;
+  --bg-surface: #050505;
+  --bg-card: #0d0d0d;
+  --bg-card-hover: #171717;
+  --border-color: #262626;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 2. Global Reset & Scrollbars                                               */
+/* -------------------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.012em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-header);
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* Custom Arix Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--gray600));
+  border-radius: 9999px;
+  border: 2px solid transparent;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--gray500));
+}
+
+/* -------------------------------------------------------------------------- */
+/* 3. Arix Animated Rainbow Gradient Badge (.arix)                            */
+/* -------------------------------------------------------------------------- */
+.arix {
+  position: relative;
+  font-weight: 600;
+  color: #ffffff !important;
+  overflow: hidden;
+  z-index: 2;
+  border-radius: var(--radiusInput);
+  padding: 0.35rem 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  box-shadow: 0 4px 14px rgba(74, 53, 207, 0.4);
+}
+
+.arix a {
+  background-color: transparent !important;
+  color: #ffffff !important;
+}
+
+.arix::after {
+  opacity: 1;
+  content: '';
+  position: absolute;
+  inset: -50%;
+  z-index: -1;
+  background: linear-gradient(225deg, rgba(238, 174, 202, 1) 0%, rgba(125, 107, 242, 1) 25%, rgba(74, 53, 207, 1) 50%, rgba(53, 138, 207, 1) 75%, rgba(53, 207, 125, 1) 100%);
+  animation: arixAnimationNav 10s infinite linear;
+  transition: opacity 0.3s;
+}
+
+.arix:hover::after {
+  opacity: 0.85;
+}
+
+@keyframes arixAnimationNav {
+  0%, 100% {
+    transform: scale(2) rotate(0deg) translateX(-15%) translateY(10px);
+  }
+  33% {
+    transform: scale(2) rotate(15deg) translateX(10px);
+  }
+  66% {
+    transform: scale(2.2) rotate(5deg) translateX(15%);
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 4. Arix Floating & Standard Sidebar Navigation                             */
+/* -------------------------------------------------------------------------- */
+.sidebar {
+  width: var(--sidebar-width);
+  background: rgb(var(--gray800));
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.4);
+}
+
+@media (min-width: 1024px) {
+  /* Arix Floating Sidebar Style */
+  .sidebar.floating-sidebar {
+    top: 1rem;
+    left: 1rem;
+    bottom: 1rem;
+    height: calc(100vh - 2rem);
+    border-radius: var(--radiusBox);
+    border: 1px solid var(--border-color);
+    background: rgba(var(--gray800), 0.95);
+    backdrop-filter: blur(16px);
+  }
+  .sidebar.floating-sidebar + .main-content {
+    margin-left: calc(var(--sidebar-width) + 1rem);
+  }
+}
+
+.sidebar-header {
+  height: var(--header-height);
+  padding: 0 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+  background: rgba(var(--gray900), 0.4);
+}
+
+.sidebar-logo {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+}
+
+.sidebar-title {
+  font-family: var(--font-header);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sidebar-nav {
+  padding: 1rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.nav-group-title {
+  padding: 0 1.25rem;
+  font-size: 0.725rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  margin-bottom: 0.4rem;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 1.25rem;
+  color: rgb(var(--gray300));
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  position: relative;
+  transition: var(--transition);
+  border-right: 2px solid transparent;
+}
+
+.nav-link svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: rgb(var(--gray400));
+  transition: var(--transition);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(var(--primary-rgb), 0.25) 100%);
+  transition: opacity 0.25s ease;
+}
+
+.nav-link:hover,
+.nav-link:focus,
+.nav-link.active {
+  color: #ffffff;
+  border-right-color: var(--primary);
+}
+
+.nav-link:hover svg,
+.nav-link.active svg {
+  color: var(--primary-border);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  opacity: 1;
+}
+
+/* User Profile footer in Sidebar */
+.sidebar-footer {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--border-color);
+  background: rgba(var(--gray900), 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 5. Top Header & Breadcrumb                                                 */
+/* -------------------------------------------------------------------------- */
+.top-header {
+  height: var(--header-height);
+  background: rgba(var(--gray800), 0.85);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.75rem;
+  position: sticky;
+  top: 0;
+  z-index: 90;
+}
+
+.main-content {
+  margin-left: var(--sidebar-width);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: margin-left 0.3s ease;
+}
+
+@media (max-width: 1023px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+  .sidebar.mobile-open {
+    transform: translateX(0);
+  }
+  .main-content {
+    margin-left: 0 !important;
+  }
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.breadcrumb a {
+  color: rgb(var(--gray300));
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: #ffffff;
+}
+
+.breadcrumb-separator {
+  color: rgb(var(--gray500));
+  font-size: 0.75rem;
+}
+
+.breadcrumb-current {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nav-icon-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radiusInput);
+  background: rgba(var(--gray700), 0.6);
+  border: 1px solid var(--border-color);
+  color: rgb(var(--gray200));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.nav-icon-btn:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 6. Arix Information Bar (Console & Server Header)                          */
+/* -------------------------------------------------------------------------- */
+.arix-info-bar {
+  background: rgba(var(--gray700), 0.7);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radiusBox);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.arix-server-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.arix-server-name {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.arix-server-stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: rgb(var(--gray300));
+}
+
+.arix-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.arix-stat-item svg {
+  width: 16px;
+  height: 16px;
+  color: rgb(var(--gray400));
+}
+
+.arix-power-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-power {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 1rem;
+  font-size: 0.825rem;
+  font-weight: 600;
+  border-radius: var(--radiusInput);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-power-start {
+  background: rgba(61, 143, 31, 0.25);
+  border-color: var(--successBorder);
+  color: var(--successText);
+}
+.btn-power-start:hover {
+  background: var(--successBackground);
+  color: #ffffff;
+  box-shadow: 0 0 15px rgba(86, 170, 43, 0.4);
+}
+
+.btn-power-restart {
+  background: rgba(74, 53, 207, 0.25);
+  border-color: var(--primary);
+  color: #ffffff;
+}
+.btn-power-restart:hover {
+  background: var(--primary);
+  box-shadow: 0 0 15px rgba(74, 53, 207, 0.4);
+}
+
+.btn-power-stop {
+  background: rgba(180, 83, 9, 0.25);
+  border-color: var(--warningBorder);
+  color: var(--warningText);
+}
+.btn-power-stop:hover {
+  background: var(--warningBackground);
+  color: #ffffff;
+  box-shadow: 0 0 15px rgba(217, 119, 6, 0.4);
+}
+
+.btn-power-kill {
+  background: rgba(143, 31, 32, 0.25);
+  border-color: var(--dangerBorder);
+  color: var(--dangerText);
+}
+.btn-power-kill:hover {
+  background: var(--dangerBackground);
+  color: #ffffff;
+  box-shadow: 0 0 15px rgba(170, 42, 42, 0.4);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 7. Arix Cards, Glass Containers & Badges                                   */
+/* -------------------------------------------------------------------------- */
+.arix-card, .card {
+  background: rgb(var(--gray700));
+  border: 1px solid var(--border-color);
+  border-radius: var(--radiusBox);
+  padding: 1.5rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  transition: var(--transition);
+}
+
+.arix-card:hover {
+  border-color: rgba(var(--primary-rgb), 0.4);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.725rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.badge-success {
+  background: rgba(61, 143, 31, 0.25);
+  color: var(--successText);
+  border: 1px solid var(--successBorder);
+}
+
+.badge-danger {
+  background: rgba(143, 31, 32, 0.25);
+  color: var(--dangerText);
+  border: 1px solid var(--dangerBorder);
+}
+
+.badge-warning {
+  background: rgba(180, 83, 9, 0.25);
+  color: var(--warningText);
+  border: 1px solid var(--warningBorder);
+}
+
+.badge-info, .badge-primary {
+  background: rgba(var(--primary-rgb), 0.25);
+  color: #ffffff;
+  border: 1px solid var(--primary);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 8. Arix Form Controls & Buttons                                            */
+/* -------------------------------------------------------------------------- */
+.form-control, input.form-control, textarea.form-control, select.form-control {
+  width: 100%;
+  padding: 0.65rem 0.95rem;
+  background-color: rgb(var(--gray800));
+  border: 1px solid var(--border-color);
+  border-radius: var(--radiusInput);
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 0.875rem;
+  outline: none;
+  transition: var(--transition);
+}
+
+.form-control:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.2);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: var(--radiusInput);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+  box-shadow: 0 4px 14px rgba(74, 53, 207, 0.4);
+}
+
+.btn-secondary {
+  background-color: rgb(var(--gray600));
+  color: rgb(var(--gray100));
+  border-color: var(--border-color);
+}
+
+.btn-secondary:hover {
+  background-color: rgb(var(--gray500));
+  color: #ffffff;
+}
+
+.btn-danger {
+  background-color: var(--dangerBackground);
+  border-color: var(--dangerBorder);
+  color: #ffffff;
+}
+
+.btn-danger:hover {
+  background-color: #aa2a2a;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 9. Arix Tables                                                             */
+/* -------------------------------------------------------------------------- */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table.arix-table, table.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+table.arix-table th, table.table th {
+  padding: 0.85rem 1rem;
+  font-size: 0.775rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--border-color);
+  text-align: left;
+}
+
+table.arix-table td, table.table td {
+  padding: 1rem;
+  font-size: 0.875rem;
+  color: var(--text-main);
+  border-bottom: 1px solid rgba(var(--gray600), 0.5);
+  vertical-align: middle;
+}
+
+table.arix-table tr:hover td, table.table tr:hover td {
+  background-color: rgba(var(--gray600), 0.3);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 10. Authentication Layout with Arix Login Background                       */
+/* -------------------------------------------------------------------------- */
+.arix-auth-page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: url('/arix/background-login.png') no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+}
+
+.arix-auth-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 5, 25, 0.7);
+  backdrop-filter: blur(6px);
+  z-index: 1;
+}
+
+.arix-auth-box {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 440px;
+  background: rgba(11, 13, 42, 0.88);
+  border: 1px solid rgba(66, 66, 91, 0.8);
+  border-radius: var(--radiusBox);
+  padding: 2.5rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(20px);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 11. Production Pterodactyl/VPS-Style Server Card Component Architecture    */
+/* -------------------------------------------------------------------------- */
+.server-cards-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  width: 100%;
+}
+
+.server-card-box {
+  background: #0e111d;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.15rem 1.45rem;
+  transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+}
+
+.server-card-box:hover {
+  background: #111424;
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.38);
+}
+
+/* 1. Top Row: Perfectly Aligned Server Name & Status Badge */
+.server-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.server-card-title-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 24px;
+}
+
+.server-card-title-link {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  font-family: var(--font-header, inherit);
+  transition: color 0.15s ease;
+}
+
+.server-card-title-link:hover {
+  color: var(--primary, #38bdf8);
+}
+
+.server-card-badge-wrap {
+  display: inline-flex;
+  align-items: center;
+}
+
+.server-card-node-badge {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #64748b;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 0.2rem 0.55rem;
+  border-radius: 5px;
+}
+
+/* 2. Middle Row: Compact Address Pill & Evenly Spaced Stats */
+.server-card-mid {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-top: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.server-address-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.32rem 0.68rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.8125rem;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+  line-height: 1;
+}
+
+.server-address-pill .pill-icon {
+  width: 13px;
+  height: 13px;
+  color: #64748b;
+  flex-shrink: 0;
+  transition: color 0.15s ease;
+}
+
+.server-address-pill:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+}
+
+.server-address-pill:hover .pill-icon {
+  color: var(--primary, #38bdf8);
+}
+
+.server-address-pill:active {
+  transform: scale(0.97);
+}
+
+.server-address-pill:focus-visible {
+  outline: 2px solid var(--primary, #38bdf8);
+  outline-offset: 1px;
+}
+
+.server-card-stats-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.45rem;
+}
+
+.server-stat-unit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+  font-size: 0.8125rem;
+  color: #8b95a5;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.server-stat-unit .stat-glyph {
+  width: 14px;
+  height: 14px;
+  color: #64748b;
+  flex-shrink: 0;
+}
+
+.server-stat-unit .stat-content {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.server-stat-unit .stat-label {
+  color: #64748b;
+  font-weight: 500;
+  font-size: 0.8125rem;
+}
+
+.server-stat-unit .stat-val {
+  color: #cbd5e1;
+  font-weight: 500;
+}
+
+.server-stat-unit .stat-sep {
+  color: #475569;
+  font-size: 0.75rem;
+  margin: 0 1px;
+}
+
+.server-stat-unit .stat-limit {
+  color: #64748b;
+  font-size: 0.775rem;
+}
+
+/* 3. Bottom Row: Equal-Height Buttons */
+.server-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.server-actions-cluster {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.server-actions-destructive {
+  margin-left: 0.65rem;
+}
+
+.btn-srv-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  height: 34px;
+  padding: 0 0.95rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  border-radius: 7px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  user-select: none;
+  white-space: nowrap;
+  line-height: 1;
+  outline: none;
+}
+
+.btn-srv-action .btn-glyph {
+  flex-shrink: 0;
+}
+
+.btn-srv-action:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 2px;
+}
+
+.btn-srv-action:disabled,
+.btn-srv-action.is-loading {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Start Button: Primary (Amber / Gold) */
+.btn-srv-start {
+  background: #ff9800;
+  color: #0f172a;
+  border-color: #ff9800;
+  font-weight: 700;
+}
+
+.btn-srv-start:hover {
+  background: #fb8c00;
+  border-color: #fb8c00;
+  box-shadow: 0 2px 10px rgba(255, 152, 0, 0.35);
+}
+
+.btn-srv-start:active {
+  transform: translateY(1px);
+}
+
+/* Restart Button: Secondary (Neutral Dark) */
+.btn-srv-restart {
+  background: #1c2237;
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.btn-srv-restart:hover {
+  background: #252e49;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.btn-srv-restart:active {
+  transform: translateY(1px);
+}
+
+/* Stop Button: Warning/Danger (Red) */
+.btn-srv-stop {
+  background: #ef4444;
+  color: #ffffff;
+  border-color: #ef4444;
+}
+
+.btn-srv-stop:hover {
+  background: #dc2626;
+  border-color: #dc2626;
+  box-shadow: 0 2px 10px rgba(239, 68, 68, 0.35);
+}
+
+.btn-srv-stop:active {
+  transform: translateY(1px);
+}
+
+/* Kill Button: Destructive Action (Visually Separated) */
+.btn-srv-kill {
+  background: rgba(239, 68, 68, 0.12);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.32);
+}
+
+.btn-srv-kill:hover {
+  background: rgba(239, 68, 68, 0.22);
+  border-color: rgba(239, 68, 68, 0.6);
+  color: #fca5a5;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.2);
+}
+
+.btn-srv-kill:active {
+  transform: translateY(1px);
+}
+
+/* Backward compatibility aliases */
+.arix-server-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  background: rgb(var(--gray700));
+  border: 1px solid var(--border-color);
+  border-radius: var(--radiusBox);
+  padding: 1.15rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 0.85rem;
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.arix-server-row:hover {
+  border-color: rgba(var(--primary-rgb), 0.5);
+  background: rgb(var(--gray600));
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 12. Arix Stat Cards & Grid Layouts                                         */
+/* -------------------------------------------------------------------------- */
+.stat-card {
+  background: rgb(var(--gray700));
+  border: 1px solid var(--border-color);
+  border-radius: var(--radiusBox);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+  transition: var(--transition);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.stat-card:hover {
+  border-color: rgba(var(--primary-rgb), 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.stat-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radiusInput);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.stat-icon.blue {
+  background: rgba(74, 53, 207, 0.2);
+  color: #8b5cf6;
+  border: 1px solid rgba(74, 53, 207, 0.4);
+}
+
+.stat-icon.green {
+  background: rgba(34, 197, 94, 0.18);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.35);
+}
+
+.stat-icon.amber {
+  background: rgba(245, 158, 11, 0.18);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+}
+
+.stat-icon.purple {
+  background: rgba(168, 85, 247, 0.18);
+  color: #c084fc;
+  border: 1px solid rgba(168, 85, 247, 0.35);
+}
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.15;
+  font-family: var(--font-header);
+}
+
+.stat-label {
+  font-size: 0.775rem;
+  font-weight: 600;
+  color: rgb(var(--gray300));
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 900px) {
+  .arix-server-row {
+    flex-wrap: wrap;
+  }
+  .arix-server-metrics {
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(var(--gray600), 0.5);
+  }
+  .server-card-mid {
+    gap: 1rem;
+  }
+  .server-card-stats-row {
+    gap: 1.15rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .server-card-box {
+    padding: 1.05rem 1.15rem;
+  }
+  .server-card-mid {
+    gap: 0.85rem;
+  }
+  .server-card-stats-row {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 580px) {
+  .server-card-mid {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .server-card-stats-row {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem;
+  }
+  .server-card-bottom {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .server-actions-cluster {
+    flex: 1;
+    gap: 0.35rem;
+  }
+  .server-actions-cluster .btn-srv-action {
+    flex: 1;
+    padding: 0 0.5rem;
+  }
+  .server-actions-destructive {
+    margin-left: 0.4rem;
+  }
+}
+
+

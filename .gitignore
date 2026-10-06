@@ -1,0 +1,16 @@
+node_modules/
+.env
+data/*.sqlite
+data/*.sqlite-journal
+data/*.sqlite-wal
+data/*.sqlite-shm
+data/sftp_host_rsa
+repo_zip.zip
+unpacked/
+Instance/server/*
+Instance/Archive/*
+Instance/Backup/*
+!Instance/server/.gitkeep
+!Instance/Archive/.gitkeep
+!Instance/Backup/.gitkeep
+.DS_Store

@@ -1,0 +1,58 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g. v1.0.0)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build & Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Determine Version & Create Tag
+        id: tag_version
+        run: |
+          if [[ "${{ github.ref }}" == refs/tags/v* ]]; then
+            TAG_NAME="${GITHUB_REF#refs/tags/}"
+          elif [ -n "${{ github.event.inputs.version }}" ]; then
+            TAG_NAME="${{ github.event.inputs.version }}"
+          else
+            PKG_VER=$(node -p "try { require('./package.json').version } catch(e) { '1.0.0' }")
+            TAG_NAME="v${PKG_VER}"
+            if git rev-parse "$TAG_NAME" >/dev/null 2>&1; then
+              TAG_NAME="v${PKG_VER}-$(git rev-parse --short HEAD)"
+            fi
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git tag -a "$TAG_NAME" -m "Automated release tag $TAG_NAME"
+            git push origin "$TAG_NAME" || true
+          fi
+          echo "tag=$TAG_NAME" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.tag_version.outputs.tag }}
+          name: Release ${{ steps.tag_version.outputs.tag }}
+          generate_release_notes: true
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
