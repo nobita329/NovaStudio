@@ -205,6 +205,19 @@ const TABLES = [
     sid VARCHAR(191) PRIMARY KEY,
     sess TEXT NOT NULL,
     expired_at BIGINT NOT NULL
+  )`,
+
+  `CREATE TABLE IF NOT EXISTS theme_settings (
+    theme_key VARCHAR(64) PRIMARY KEY,
+    name VARCHAR(128) NOT NULL,
+    version VARCHAR(32) NOT NULL,
+    author VARCHAR(128) NOT NULL,
+    is_active INTEGER DEFAULT 0,
+    config_json TEXT NOT NULL,
+    pages_json TEXT,
+    components_json TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
   )`
 ];
 
@@ -293,17 +306,18 @@ async function applySchema(db) {
     const mcNestId = mcNest.insertId || 1;
 
     const mcEggs = [
-      ['Minecraft Paper (Java 21)', 'ghcr.io/pterodactyl/yolks:java_21', 'java -Xms128M -Xmx{{SERVER_MEMORY}}M -jar server.jar nogui'],
-      ['Minecraft Paper (Java 26)', 'ghcr.io/pterodactyl/yolks:java_26', 'java -Xms128M -Xmx{{SERVER_MEMORY}}M -jar server.jar nogui'],
-      ['Minecraft Paper (Java 25)', 'ghcr.io/pterodactyl/yolks:java_25', 'java -Xms128M -Xmx{{SERVER_MEMORY}}M -jar server.jar nogui'],
-      ['Minecraft Paper (Java 17)', 'ghcr.io/pterodactyl/yolks:java_17', 'java -Xms128M -Xmx{{SERVER_MEMORY}}M -jar server.jar nogui'],
-      ['Minecraft Paper (Java 16)', 'ghcr.io/pterodactyl/yolks:java_16', 'java -Xms128M -Xmx{{SERVER_MEMORY}}M -jar server.jar nogui'],
-      ['Minecraft Paper (Java 11)', 'ghcr.io/pterodactyl/yolks:java_11', 'java -Xms128M -Xmx{{SERVER_MEMORY}}M -jar server.jar nogui'],
-      ['Minecraft Paper (Java 8)', 'ghcr.io/pterodactyl/yolks:java_8', 'java -Xms128M -Xmx{{SERVER_MEMORY}}M -jar server.jar nogui']
+      ['Paper', 'ghcr.io/pterodactyl/yolks:java_21', 'java -Xms128M -XX:MaxRAMPercentage=95.0 -Dterminal.jline=false -Dterminal.ansi=true -jar {{SERVER_JARFILE}}'],
+      ['Minecraft Paper (Java 21)', 'ghcr.io/pterodactyl/yolks:java_21', 'java -Xms128M -XX:MaxRAMPercentage=95.0 -Dterminal.jline=false -Dterminal.ansi=true -jar {{SERVER_JARFILE}}'],
+      ['Minecraft Paper (Java 26)', 'ghcr.io/pterodactyl/yolks:java_26', 'java -Xms128M -XX:MaxRAMPercentage=95.0 -Dterminal.jline=false -Dterminal.ansi=true -jar {{SERVER_JARFILE}}'],
+      ['Minecraft Paper (Java 25)', 'ghcr.io/pterodactyl/yolks:java_25', 'java -Xms128M -XX:MaxRAMPercentage=95.0 -Dterminal.jline=false -Dterminal.ansi=true -jar {{SERVER_JARFILE}}'],
+      ['Minecraft Paper (Java 17)', 'ghcr.io/pterodactyl/yolks:java_17', 'java -Xms128M -XX:MaxRAMPercentage=95.0 -Dterminal.jline=false -Dterminal.ansi=true -jar {{SERVER_JARFILE}}'],
+      ['Minecraft Paper (Java 16)', 'ghcr.io/pterodactyl/yolks:java_16', 'java -Xms128M -XX:MaxRAMPercentage=95.0 -Dterminal.jline=false -Dterminal.ansi=true -jar {{SERVER_JARFILE}}'],
+      ['Minecraft Paper (Java 11)', 'ghcr.io/pterodactyl/yolks:java_11', 'java -Xms128M -XX:MaxRAMPercentage=95.0 -Dterminal.jline=false -Dterminal.ansi=true -jar {{SERVER_JARFILE}}'],
+      ['Minecraft Paper (Java 8)', 'ghcr.io/pterodactyl/yolks:java_8', 'java -Xms128M -XX:MaxRAMPercentage=95.0 -Dterminal.jline=false -Dterminal.ansi=true -jar {{SERVER_JARFILE}}']
     ];
     for (const [name, img, cmd] of mcEggs) {
       await db.query('INSERT INTO eggs (nest_id, name, docker_image, startup_command, environment_json) VALUES (?, ?, ?, ?, ?)', [
-        mcNestId, name, img, cmd, JSON.stringify({ SERVER_JARFILE: 'server.jar' })
+        mcNestId, name, img, cmd, JSON.stringify({ BUILD_NUMBER: 'latest', DL_PATH: '', MINECRAFT_VERSION: 'latest', SERVER_JARFILE: 'server.jar' })
       ]);
     }
 
@@ -314,17 +328,24 @@ async function applySchema(db) {
     ]);
     const nodeNestId = nodeNest.insertId || 2;
 
+    const nodeStartup = 'clear; echo -e "---------------[ This server is powered by www.RyzeHost.xyz ]---------------\\n"; [ ! -d node_modules ]&&npm install||echo "Using existing node_modules, delete to reinstall."; {{STARTUPSCRIPT}}';
     const nodeEggs = [
-      ['Node.js 20', 'ghcr.io/ptero-eggs/yolks:nodejs_20', 'sh -c "npm install && npm start"'],
-      ['Node.js 22', 'ghcr.io/ptero-eggs/yolks:nodejs_22', 'sh -c "npm install && npm start"'],
-      ['Node.js 24', 'ghcr.io/ptero-eggs/yolks:nodejs_24', 'sh -c "npm install && npm start"'],
-      ['Node.js 25', 'ghcr.io/ptero-eggs/yolks:nodejs_25', 'sh -c "npm install && npm start"'],
-      ['Node.js 18', 'ghcr.io/ptero-eggs/yolks:nodejs_18', 'sh -c "npm install && npm start"'],
-      ['Node.js 16', 'ghcr.io/ptero-eggs/yolks:nodejs_16', 'sh -c "npm install && npm start"']
+      ['RyzeHost Node.js Egg', 'ghcr.io/parkervcp/yolks:nodejs_20', nodeStartup],
+      ['Nodejs 24', 'ghcr.io/parkervcp/yolks:nodejs_24', nodeStartup],
+      ['Nodejs 23', 'ghcr.io/parkervcp/yolks:nodejs_23', nodeStartup],
+      ['Nodejs 22', 'ghcr.io/parkervcp/yolks:nodejs_22', nodeStartup],
+      ['Nodejs 21', 'ghcr.io/parkervcp/yolks:nodejs_21', nodeStartup],
+      ['Nodejs 20', 'ghcr.io/parkervcp/yolks:nodejs_20', nodeStartup],
+      ['Nodejs 19', 'ghcr.io/parkervcp/yolks:nodejs_19', nodeStartup],
+      ['Nodejs 18', 'ghcr.io/parkervcp/yolks:nodejs_18', nodeStartup],
+      ['Nodejs 17', 'ghcr.io/parkervcp/yolks:nodejs_17', nodeStartup],
+      ['Nodejs 16', 'ghcr.io/parkervcp/yolks:nodejs_16', nodeStartup],
+      ['Nodejs 14', 'ghcr.io/parkervcp/yolks:nodejs_14', nodeStartup],
+      ['Nodejs 12', 'ghcr.io/parkervcp/yolks:nodejs_12', nodeStartup]
     ];
     for (const [name, img, cmd] of nodeEggs) {
       await db.query('INSERT INTO eggs (nest_id, name, docker_image, startup_command, environment_json) VALUES (?, ?, ?, ?, ?)', [
-        nodeNestId, name, img, cmd, JSON.stringify({ MAIN_FILE: 'index.js' })
+        nodeNestId, name, img, cmd, JSON.stringify({ startupscript: 'node main.js' })
       ]);
     }
 
@@ -335,17 +356,32 @@ async function applySchema(db) {
     ]);
     const pyNestId = pyNest.insertId || 3;
 
+    const pyStartup = 'if [[ -d .git ]] && [[ "{{AUTO_UPDATE}}" == "1" ]]; then git pull; fi; if [[ ! -z "{{PY_PACKAGES}}" ]]; then pip install -U --prefix .local {{PY_PACKAGES}}; fi; if [[ -f /home/container/${REQUIREMENTS_FILE} ]]; then pip install -U --prefix .local -r ${REQUIREMENTS_FILE}; fi; /usr/local/bin/python /home/container/{{PY_FILE}}';
+    const pyEnv = JSON.stringify({
+      GIT_ADDRESS: '',
+      BRANCH: '',
+      USER_UPLOAD: '0',
+      AUTO_UPDATE: '0',
+      PY_FILE: 'app.py',
+      PY_PACKAGES: '',
+      USERNAME: '',
+      ACCESS_TOKEN: '',
+      REQUIREMENTS_FILE: 'requirements.txt'
+    });
+
     const pyEggs = [
-      ['Python 3.12', 'ghcr.io/ptero-eggs/yolks:python_3.12', 'python3 app.py'],
-      ['Python 3.13', 'ghcr.io/ptero-eggs/yolks:python_3.13', 'python3 app.py'],
-      ['Python 3.11', 'ghcr.io/ptero-eggs/yolks:python_3.11', 'python3 app.py'],
-      ['Python 3.10', 'ghcr.io/ptero-eggs/yolks:python_3.10', 'python3 app.py'],
-      ['Python 3.9', 'ghcr.io/ptero-eggs/yolks:python_3.9', 'python3 app.py'],
-      ['Python 2.7', 'ghcr.io/ptero-eggs/yolks:python_2.7', 'python app.py']
+      ['python generic', 'ghcr.io/parkervcp/yolks:python_3.12', pyStartup],
+      ['Python 3.12', 'ghcr.io/parkervcp/yolks:python_3.12', pyStartup],
+      ['Python 3.11', 'ghcr.io/parkervcp/yolks:python_3.11', pyStartup],
+      ['Python 3.10', 'ghcr.io/parkervcp/yolks:python_3.10', pyStartup],
+      ['Python 3.9', 'ghcr.io/parkervcp/yolks:python_3.9', pyStartup],
+      ['Python 3.8', 'ghcr.io/parkervcp/yolks:python_3.8', pyStartup],
+      ['Python 3.7', 'ghcr.io/parkervcp/yolks:python_3.7', pyStartup],
+      ['Python 2.7', 'ghcr.io/parkervcp/yolks:python_2.7', pyStartup]
     ];
     for (const [name, img, cmd] of pyEggs) {
       await db.query('INSERT INTO eggs (nest_id, name, docker_image, startup_command, environment_json) VALUES (?, ?, ?, ?, ?)', [
-        pyNestId, name, img, cmd, JSON.stringify({ MAIN_FILE: 'app.py' })
+        pyNestId, name, img, cmd, pyEnv
       ]);
     }
   }

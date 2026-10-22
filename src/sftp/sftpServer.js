@@ -257,6 +257,10 @@ function startSftpServer() {
     }
   );
 
+  server.on('error', (err) => {
+    console.error('[Nova SFTP] SFTP Server error:', err.message);
+  });
+
   server.listen(config.sftp.port, config.sftp.host, () => {
     console.log(`[Nova SFTP] Server listening on ${config.sftp.host}:${config.sftp.port}`);
   });

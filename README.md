@@ -1,4 +1,12 @@
+<p align="center">
+  <img src="public/arix/Arix.png" alt="Nova Studio Logo" width="120" />
+</p>
+
 # 🌌 Nova Panel — Next-Gen Game & App Server Management
+
+<p align="center">
+  <img src="public/arix/dashboard/banner.png" alt="Nova Panel Dashboard Banner" width="100%" />
+</p>
 
 Nova is a high-performance, modern server management web panel designed to manage Minecraft game servers, Python apps/bots, and Node.js applications directly on Docker containers.
 

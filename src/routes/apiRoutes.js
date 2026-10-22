@@ -212,16 +212,19 @@ router.post('/servers', async (req, res) => {
     if (matchingEgg) targetEggId = matchingEgg.id;
   } else if (type === 'nodejs') {
     targetNestId = 2;
-    targetEggId = 9;
-    finalImage = (docker_image && String(docker_image).trim()) ? String(docker_image).trim() : 'ghcr.io/ptero-eggs/yolks:nodejs_20';
-    finalStartup = startup_cmd || 'if [ -f package.json ]; then npm install; fi; npm start';
+    targetNestId = 2;
+    const ryzeEgg = await db.get("SELECT id FROM eggs WHERE nest_id = 2 AND name LIKE '%Ryze%' LIMIT 1");
+    targetEggId = ryzeEgg ? ryzeEgg.id : 8;
+    finalImage = (docker_image && String(docker_image).trim()) ? String(docker_image).trim() : 'ghcr.io/parkervcp/yolks:nodejs_20';
+    finalStartup = startup_cmd || 'clear; echo -e "---------------[ This server is powered by www.RyzeHost.xyz ]---------------\\n"; [ ! -d node_modules ]&&npm install||echo "Using existing node_modules, delete to reinstall."; {{STARTUPSCRIPT}}';
     const matchingEgg = await db.get('SELECT id FROM eggs WHERE docker_image = ? LIMIT 1', [finalImage]);
     if (matchingEgg) targetEggId = matchingEgg.id;
   } else if (type === 'python') {
     targetNestId = 3;
-    targetEggId = 15;
-    finalImage = (docker_image && String(docker_image).trim()) ? String(docker_image).trim() : 'ghcr.io/ptero-eggs/yolks:python_3.12';
-    finalStartup = startup_cmd || 'if [ -f requirements.txt ]; then pip install -r requirements.txt; fi; python3 app.py';
+    const pyGenericEgg = await db.get("SELECT id FROM eggs WHERE nest_id = 3 AND name LIKE '%generic%' LIMIT 1");
+    targetEggId = pyGenericEgg ? pyGenericEgg.id : 14;
+    finalImage = (docker_image && String(docker_image).trim()) ? String(docker_image).trim() : 'ghcr.io/parkervcp/yolks:python_3.12';
+    finalStartup = startup_cmd || 'if [[ -d .git ]] && [[ "{{AUTO_UPDATE}}" == "1" ]]; then git pull; fi; if [[ ! -z "{{PY_PACKAGES}}" ]]; then pip install -U --prefix .local {{PY_PACKAGES}}; fi; if [[ -f /home/container/${REQUIREMENTS_FILE} ]]; then pip install -U --prefix .local -r ${REQUIREMENTS_FILE}; fi; /usr/local/bin/python /home/container/{{PY_FILE}}';
     const matchingEgg = await db.get('SELECT id FROM eggs WHERE docker_image = ? LIMIT 1', [finalImage]);
     if (matchingEgg) targetEggId = matchingEgg.id;
   }

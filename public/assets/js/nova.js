@@ -96,7 +96,7 @@ window.Nova = {
 
   // Server Cards Power Actions & Status Synchronization
   initServerCards() {
-    const cards = document.querySelectorAll('.server-card-box');
+    const cards = document.querySelectorAll('.server-card-box, .server-row-box');
     if (!cards.length) return;
 
     cards.forEach((card) => {
@@ -105,21 +105,36 @@ window.Nova = {
       const badgeWrap = card.querySelector('.server-card-badge-wrap');
 
       const setBadge = (status) => {
-        if (!badgeWrap) return;
         const s = (status || 'offline').toLowerCase();
-        let cls = 'badge-offline';
-        let label = 'Offline';
-        if (s === 'online' || s === 'running') {
-          cls = 'badge-online';
-          label = 'Online';
-        } else if (s === 'starting' || s === 'installing') {
-          cls = 'badge-starting';
-          label = 'Starting...';
-        } else if (s === 'stopping') {
-          cls = 'badge-stopping';
-          label = 'Stopping...';
+        card.setAttribute('data-status', s);
+
+        if (badgeWrap) {
+          let cls = 'badge-offline';
+          let label = 'Offline';
+          if (s === 'online' || s === 'running') {
+            cls = 'badge-online';
+            label = 'Online';
+          } else if (s === 'starting' || s === 'installing') {
+            cls = 'badge-starting';
+            label = 'Starting...';
+          } else if (s === 'stopping') {
+            cls = 'badge-stopping';
+            label = 'Stopping...';
+          }
+          badgeWrap.innerHTML = `<span class="status-badge ${cls}"><span class="badge-dot"></span>${label}</span>`;
         }
-        badgeWrap.innerHTML = `<span class="status-badge ${cls}"><span class="badge-dot"></span>${label}</span>`;
+
+        const uptimeDot = card.querySelector('.stat-uptime-dot');
+        const uptimeStatus = card.querySelector('.stat-uptime-status');
+        if (uptimeDot && uptimeStatus) {
+          if (s === 'online' || s === 'running') {
+            uptimeDot.classList.add('is-live');
+            uptimeStatus.textContent = 'Active';
+          } else {
+            uptimeDot.classList.remove('is-live');
+            uptimeStatus.textContent = 'Offline';
+          }
+        }
       };
 
       actionBtns.forEach((btn) => {
@@ -173,6 +188,61 @@ window.Nova = {
         });
       });
     });
+
+    // Start background stats polling for active running servers
+    if (!this._statsPollTimer) {
+      this._statsPollTimer = setInterval(() => this.pollServerStats(), 5000);
+    }
+  },
+
+  async pollServerStats() {
+    const liveCards = document.querySelectorAll('.server-card-box[data-status="online"], .server-card-box[data-status="running"], .server-row-box[data-status="online"], .server-row-box[data-status="running"]');
+    if (!liveCards.length) return;
+
+    for (const card of liveCards) {
+      const serverId = card.getAttribute('data-server-id');
+      if (!serverId) continue;
+
+      try {
+        const res = await fetch(`/server/${serverId}/stats`, { headers: { Accept: 'application/json' } });
+        if (!res.ok) continue;
+        const json = await res.json();
+        if (json.success && json.data) {
+          const stats = json.data;
+
+          // CPU
+          const cpuVal = card.querySelector('.stat-cpu-val');
+          const cpuBar = card.querySelector('.stat-cpu-bar');
+          if (cpuVal && stats.cpu !== undefined) {
+            cpuVal.textContent = Number(stats.cpu).toFixed(2) + '%';
+          }
+          if (cpuBar && stats.cpu !== undefined) {
+            cpuBar.style.width = Math.min(100, Math.max(0, stats.cpu)) + '%';
+          }
+
+          // RAM
+          const memVal = card.querySelector('.stat-mem-val');
+          const memBar = card.querySelector('.stat-mem-bar');
+          if (memVal && stats.memory !== undefined) {
+            const mib = (stats.memory / (1024 * 1024)).toFixed(1);
+            memVal.textContent = mib + ' MiB';
+          }
+          if (memBar && stats.memoryLimit > 0) {
+            const pct = Math.min(100, Math.max(0, (stats.memory / stats.memoryLimit) * 100));
+            memBar.style.width = pct + '%';
+          }
+
+          // Uptime
+          const uptimeVal = card.querySelector('.stat-uptime-val');
+          if (uptimeVal && stats.uptime !== undefined) {
+            const u = Math.floor(stats.uptime || 0);
+            if (u < 60) uptimeVal.textContent = u + 's';
+            else if (u < 3600) uptimeVal.textContent = Math.floor(u / 60) + 'm ' + (u % 60) + 's';
+            else uptimeVal.textContent = (u / 3600).toFixed(1) + 'h';
+          }
+        }
+      } catch (_) {}
+    }
   },
 
   // Modal Dialog System
@@ -271,6 +341,64 @@ window.Nova = {
         }
       });
     });
+  },
+
+  // Server View Switching (Card / List) & Search Filtering
+  initServerView() {
+    let saved = 'card';
+    try {
+      saved = localStorage.getItem('nova_server_view') || 'card';
+    } catch (_) {}
+    this.switchServerView(saved);
+  },
+
+  switchServerView(mode) {
+    const targetMode = mode === 'list' ? 'list' : 'card';
+    try {
+      localStorage.setItem('nova_server_view', targetMode);
+    } catch (_) {}
+
+    const cardGrids = document.querySelectorAll('.server-cards-grid');
+    const listViews = document.querySelectorAll('.server-list-view');
+    const cardBtns = document.querySelectorAll('.btn-view-card');
+    const listBtns = document.querySelectorAll('.btn-view-list');
+
+    if (targetMode === 'list') {
+      cardGrids.forEach((el) => (el.style.display = 'none'));
+      listViews.forEach((el) => (el.style.display = 'flex'));
+      cardBtns.forEach((btn) => btn.classList.remove('active'));
+      listBtns.forEach((btn) => btn.classList.add('active'));
+    } else {
+      cardGrids.forEach((el) => (el.style.display = 'flex'));
+      listViews.forEach((el) => (el.style.display = 'none'));
+      cardBtns.forEach((btn) => btn.classList.add('active'));
+      listBtns.forEach((btn) => btn.classList.remove('active'));
+    }
+  },
+
+  filterServers(query) {
+    const q = (query || '').toLowerCase().trim();
+    const cards = document.querySelectorAll('.server-card-box');
+    const rows = document.querySelectorAll('.server-row-box');
+    let matchCount = 0;
+
+    cards.forEach((card) => {
+      const text = (card.getAttribute('data-search') || card.textContent || '').toLowerCase();
+      const match = !q || text.includes(q);
+      card.style.display = match ? '' : 'none';
+      if (match) matchCount++;
+    });
+
+    rows.forEach((row) => {
+      const text = (row.getAttribute('data-search') || row.textContent || '').toLowerCase();
+      const match = !q || text.includes(q);
+      row.style.display = match ? '' : 'none';
+    });
+
+    const noResults = document.getElementById('serversNoResults');
+    if (noResults) {
+      noResults.style.display = (matchCount === 0 && q) ? 'block' : 'none';
+    }
   }
 };
 
@@ -278,11 +406,24 @@ window.arixCopy = function (text) {
   window.Nova.copy(text);
 };
 
+window.switchServerView = function (mode) {
+  if (window.Nova && window.Nova.switchServerView) {
+    window.Nova.switchServerView(mode);
+  }
+};
+
+window.filterServers = function (query) {
+  if (window.Nova && window.Nova.filterServers) {
+    window.Nova.filterServers(query);
+  }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
   window.Nova.initMobileNav();
   window.Nova.initServerCards();
   window.Nova.initModals();
   window.Nova.initSubpagePower();
+  window.Nova.initServerView();
 
   // Auto-init branding previews if on settings page
   window.Nova.initLivePreview('logo_file_input', 'logo_url_input', 'logo_preview_img');

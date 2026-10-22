@@ -8,27 +8,61 @@ class ThemeService {
   constructor() {
     this.cachedActiveTheme = null;
     this.cacheTimestamp = 0;
+    this.initialized = false;
+  }
+
+  async ensureInitialized() {
+    if (!this.initialized) {
+      await this.init();
+      this.initialized = true;
+    }
   }
 
   async init() {
     const db = getDb();
     if (!db) return;
 
-    // 1. Ensure theme_settings table exists
-    await db.query(`
-      CREATE TABLE IF NOT EXISTS theme_settings (
-        theme_key VARCHAR(64) PRIMARY KEY,
-        name VARCHAR(128) NOT NULL,
-        version VARCHAR(32) NOT NULL,
-        author VARCHAR(128) NOT NULL,
-        is_active TINYINT(1) DEFAULT 0,
-        config_json LONGTEXT NOT NULL,
-        pages_json LONGTEXT,
-        components_json LONGTEXT,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-    `);
+    // 1. Ensure theme_settings table exists (compatible with both SQLite & MySQL)
+    if (db.type === 'mysql') {
+      await db.query(`
+        CREATE TABLE IF NOT EXISTS theme_settings (
+          theme_key VARCHAR(64) PRIMARY KEY,
+          name VARCHAR(128) NOT NULL,
+          version VARCHAR(32) NOT NULL,
+          author VARCHAR(128) NOT NULL,
+          is_active TINYINT(1) DEFAULT 0,
+          config_json LONGTEXT NOT NULL,
+          pages_json LONGTEXT,
+          components_json LONGTEXT,
+          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+          updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+      `);
+    } else {
+      await db.query(`
+        CREATE TABLE IF NOT EXISTS theme_settings (
+          theme_key VARCHAR(64) PRIMARY KEY,
+          name VARCHAR(128) NOT NULL,
+          version VARCHAR(32) NOT NULL,
+          author VARCHAR(128) NOT NULL,
+          is_active INTEGER DEFAULT 0,
+          config_json TEXT NOT NULL,
+          pages_json TEXT,
+          components_json TEXT,
+          created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+          updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        );
+      `);
+    }
+
+    const upsertSetting = async (key, val) => {
+      const existing = await db.get('SELECT `key` FROM settings WHERE `key` = ?', [key]);
+      if (existing) {
+        await db.query('UPDATE settings SET `value` = ? WHERE `key` = ?', [val, key]);
+      } else {
+        await db.query('INSERT INTO settings (`key`, `value`) VALUES (?, ?)', [key, val]);
+      }
+    };
 
     // 2. Load authentic Arix manifest defaults
     let arixDefaults = {};
@@ -40,11 +74,14 @@ class ThemeService {
 
     try {
       if (fs.existsSync(ARIX_MANIFEST_PATH)) {
-        const parsed = JSON.parse(fs.readFileSync(ARIX_MANIFEST_PATH, 'utf8'));
-        if (parsed.defaults) arixDefaults = parsed.defaults;
-        if (parsed.name) manifestData.name = parsed.name;
-        if (parsed.version) manifestData.version = parsed.version;
-        if (parsed.author) manifestData.author = parsed.author;
+        const raw = fs.readFileSync(ARIX_MANIFEST_PATH, 'utf8').trim();
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (parsed.defaults) arixDefaults = parsed.defaults;
+          if (parsed.name) manifestData.name = parsed.name;
+          if (parsed.version) manifestData.version = parsed.version;
+          if (parsed.author) manifestData.author = parsed.author;
+        }
       }
     } catch (e) {
       console.error('[ThemeService] Failed reading arix manifest:', e);
@@ -70,10 +107,7 @@ class ThemeService {
         JSON.stringify(this.getDefaultComponentsConfig()),
       ]);
 
-      await db.query(`
-        INSERT INTO settings (\`key\`, \`value\`) VALUES ('active_theme', 'arix')
-        ON DUPLICATE KEY UPDATE \`value\` = 'arix'
-      `);
+      await upsertSetting('active_theme', 'arix');
     } else if (!existingArix.config_json || existingArix.config_json === '{}') {
       await db.query(`
         UPDATE theme_settings 
@@ -107,6 +141,7 @@ class ThemeService {
   async listThemes() {
     const db = getDb();
     if (!db) return [];
+    await this.ensureInitialized();
     const rows = await db.query('SELECT theme_key, name, version, author, is_active, updated_at FROM theme_settings ORDER BY theme_key ASC');
     return rows || [];
   }
@@ -114,6 +149,7 @@ class ThemeService {
   async getTheme(themeKey) {
     const db = getDb();
     if (!db) return null;
+    await this.ensureInitialized();
     const row = await db.get('SELECT * FROM theme_settings WHERE theme_key = ?', [themeKey]);
     if (!row) return null;
 
@@ -145,6 +181,7 @@ class ThemeService {
 
     const db = getDb();
     if (!db) return null;
+    await this.ensureInitialized();
 
     let row = await db.get('SELECT * FROM theme_settings WHERE is_active = 1 LIMIT 1');
     if (!row) {
@@ -183,14 +220,17 @@ class ThemeService {
   async activateTheme(themeKey) {
     const db = getDb();
     if (!db) return false;
+    await this.ensureInitialized();
 
     await db.query('UPDATE theme_settings SET is_active = 0');
     await db.query('UPDATE theme_settings SET is_active = 1 WHERE theme_key = ?', [themeKey]);
 
-    await db.query(`
-      INSERT INTO settings (\`key\`, \`value\`) VALUES ('active_theme', ?)
-      ON DUPLICATE KEY UPDATE \`value\` = ?
-    `, [themeKey, themeKey]);
+    const existing = await db.get('SELECT `key` FROM settings WHERE `key` = ?', ['active_theme']);
+    if (existing) {
+      await db.query('UPDATE settings SET `value` = ? WHERE `key` = ?', [themeKey, 'active_theme']);
+    } else {
+      await db.query('INSERT INTO settings (`key`, `value`) VALUES (?, ?)', ['active_theme', themeKey]);
+    }
 
     this.cachedActiveTheme = null;
     return true;
@@ -199,14 +239,17 @@ class ThemeService {
   async deactivateTheme(themeKey) {
     const db = getDb();
     if (!db) return false;
+    await this.ensureInitialized();
 
     await db.query('UPDATE theme_settings SET is_active = 0 WHERE theme_key = ?', [themeKey]);
     await db.query('UPDATE theme_settings SET is_active = 1 WHERE theme_key = ?', ['default']);
 
-    await db.query(`
-      INSERT INTO settings (\`key\`, \`value\`) VALUES ('active_theme', 'default')
-      ON DUPLICATE KEY UPDATE \`value\` = 'default'
-    `);
+    const existing = await db.get('SELECT `key` FROM settings WHERE `key` = ?', ['active_theme']);
+    if (existing) {
+      await db.query('UPDATE settings SET `value` = ? WHERE `key` = ?', ['default', 'active_theme']);
+    } else {
+      await db.query('INSERT INTO settings (`key`, `value`) VALUES (?, ?)', ['active_theme', 'default']);
+    }
 
     this.cachedActiveTheme = null;
     return true;
@@ -215,6 +258,7 @@ class ThemeService {
   async saveThemeConfig(themeKey, newConfig) {
     const db = getDb();
     if (!db) return false;
+    await this.ensureInitialized();
 
     const existing = await this.getTheme(themeKey);
     if (!existing) return false;
@@ -231,7 +275,7 @@ class ThemeService {
 
     await db.query(`
       UPDATE theme_settings 
-      SET config_json = ?, updated_at = NOW() 
+      SET config_json = ?, updated_at = CURRENT_TIMESTAMP 
       WHERE theme_key = ?
     `, [JSON.stringify(merged), themeKey]);
 
@@ -242,10 +286,11 @@ class ThemeService {
   async savePagesConfig(themeKey, pagesConfig) {
     const db = getDb();
     if (!db) return false;
+    await this.ensureInitialized();
 
     await db.query(`
       UPDATE theme_settings 
-      SET pages_json = ?, updated_at = NOW() 
+      SET pages_json = ?, updated_at = CURRENT_TIMESTAMP 
       WHERE theme_key = ?
     `, [JSON.stringify(pagesConfig), themeKey]);
 
@@ -256,10 +301,11 @@ class ThemeService {
   async saveComponentsConfig(themeKey, componentsConfig) {
     const db = getDb();
     if (!db) return false;
+    await this.ensureInitialized();
 
     await db.query(`
       UPDATE theme_settings 
-      SET components_json = ?, updated_at = NOW() 
+      SET components_json = ?, updated_at = CURRENT_TIMESTAMP 
       WHERE theme_key = ?
     `, [JSON.stringify(componentsConfig), themeKey]);
 
@@ -270,18 +316,22 @@ class ThemeService {
   async resetTheme(themeKey) {
     const db = getDb();
     if (!db) return false;
+    await this.ensureInitialized();
 
     let defaults = this.getFallbackArixDefaults();
     if (themeKey === 'arix' && fs.existsSync(ARIX_MANIFEST_PATH)) {
       try {
-        const manifest = JSON.parse(fs.readFileSync(ARIX_MANIFEST_PATH, 'utf8'));
-        if (manifest.defaults) defaults = manifest.defaults;
+        const raw = fs.readFileSync(ARIX_MANIFEST_PATH, 'utf8').trim();
+        if (raw) {
+          const manifest = JSON.parse(raw);
+          if (manifest.defaults) defaults = manifest.defaults;
+        }
       } catch (e) {}
     }
 
     await db.query(`
       UPDATE theme_settings 
-      SET config_json = ?, pages_json = ?, components_json = ?, updated_at = NOW() 
+      SET config_json = ?, pages_json = ?, components_json = ?, updated_at = CURRENT_TIMESTAMP 
       WHERE theme_key = ?
     `, [
       JSON.stringify(defaults),
@@ -323,10 +373,11 @@ class ThemeService {
 
     const db = getDb();
     if (!db) throw new Error('Database unavailable.');
+    await this.ensureInitialized();
 
     await db.query(`
       UPDATE theme_settings 
-      SET config_json = ?, pages_json = ?, components_json = ?, updated_at = NOW() 
+      SET config_json = ?, pages_json = ?, components_json = ?, updated_at = CURRENT_TIMESTAMP 
       WHERE theme_key = ?
     `, [
       JSON.stringify(config),

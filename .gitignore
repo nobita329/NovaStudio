@@ -14,3 +14,5 @@ Instance/Backup/*
 !Instance/Archive/.gitkeep
 !Instance/Backup/.gitkeep
 .DS_Store
+.pm2/
+*.log

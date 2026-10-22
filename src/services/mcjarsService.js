@@ -37,7 +37,7 @@ async function getBuilds(type) {
   }
 }
 
-async function downloadServerJar(type, version, targetDir, onProgress = null) {
+async function downloadServerJar(type, version, targetDir, onProgress = null, fileName = 'server.jar') {
   try {
     if (!fs.existsSync(targetDir)) {
       fs.mkdirSync(targetDir, { recursive: true });
@@ -61,7 +61,7 @@ async function downloadServerJar(type, version, targetDir, onProgress = null) {
       throw new Error(`No jar download URL found for ${type} version ${version}`);
     }
 
-    const jarPath = path.join(targetDir, 'server.jar');
+    const jarPath = path.join(targetDir, fileName || 'server.jar');
     console.log(`[mcjars] Downloading ${type} (${version || 'latest'}) from ${targetBuild.jarUrl}...`);
 
     const writer = fs.createWriteStream(jarPath);

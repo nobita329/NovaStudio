@@ -64,11 +64,32 @@ require_once __DIR__ . '/../layouts/sidebar_user.php';
       </div>
     </div>
 
-    <!-- Servers List / Cards -->
-    <div style="margin-top: 2rem;">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
-        <h2 style="font-size: 1.15rem; font-weight: 700; color: #fff;">Your Servers</h2>
-        <a href="/servers" style="font-size: 0.85rem; color: var(--accent-blue);">View All →</a>
+    <!-- Servers List / Cards Section -->
+    <div class="dashboard-servers-section">
+      <div class="dashboard-servers-header">
+        <div class="dashboard-servers-title-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="servers-title-icon" style="flex-shrink: 0;"><rect x="3" y="4" width="18" height="3.5" rx="1.75" fill="#818cf8"/><rect x="3" y="10.25" width="18" height="3.5" rx="1.75" fill="#818cf8"/><rect x="3" y="16.5" width="18" height="3.5" rx="1.75" fill="#818cf8"/></svg>
+          <h2 class="dashboard-servers-title">Your Servers</h2>
+          <?php if (!empty($servers)): ?>
+            <div class="view-toggle-group" role="group" aria-label="Server view mode">
+              <button type="button" class="view-toggle-btn btn-view-card active" onclick="window.switchServerView('card')" title="Card View" aria-label="Card View">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+                <span>Card</span>
+              </button>
+              <button type="button" class="view-toggle-btn btn-view-list" onclick="window.switchServerView('list')" title="List View" aria-label="List View">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+                <span>List</span>
+              </button>
+            </div>
+          <?php endif; ?>
+        </div>
+
+        <div class="dashboard-servers-header-right">
+          <a href="/servers" class="dashboard-view-all-link" title="View all managed servers">
+            <span>View All</span>
+            <span class="view-all-arrow">→</span>
+          </a>
+        </div>
       </div>
 
       <?php if (empty($servers)): ?>
@@ -81,9 +102,17 @@ require_once __DIR__ . '/../layouts/sidebar_user.php';
           <?php endif; ?>
         </div>
       <?php else: ?>
+        <!-- Card View Grid -->
         <div class="server-cards-grid">
           <?php foreach ($servers as $srv): ?>
             <?php require __DIR__ . '/partials/server_card.php'; ?>
+          <?php endforeach; ?>
+        </div>
+
+        <!-- List View Rows -->
+        <div class="server-list-view" style="display: none;">
+          <?php foreach ($servers as $srv): ?>
+            <?php require __DIR__ . '/partials/server_row.php'; ?>
           <?php endforeach; ?>
         </div>
       <?php endif; ?>

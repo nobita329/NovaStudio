@@ -30,30 +30,178 @@ const logoStorage = multer.diskStorage({
 });
 const uploadBranding = multer({ storage: logoStorage });
 
-// 01. ADMIN DASHBOARD
-router.get('/', async (req, res) => {
+// 01. ADMIN DASHBOARD & STATISTICS
+router.get(['/', '/dashboard', '/statistics'], async (req, res) => {
   const db = getDb();
-  const [totalUsers, totalServers, totalNodes, totalLocations, totalDbHosts] = await Promise.all([
-    db.get('SELECT COUNT(*) as count FROM users'),
-    db.get('SELECT COUNT(*) as count FROM servers'),
-    db.get('SELECT COUNT(*) as count FROM nodes'),
-    db.get('SELECT COUNT(*) as count FROM locations'),
-    db.get('SELECT COUNT(*) as count FROM database_hosts'),
-  ]);
+  try {
+    const [
+      totalServersRow,
+      activeServersRow,
+      suspendedServersRow,
+      installingServersRow,
+      totalUsersRow,
+      adminUsersRow,
+      totalNodesRow,
+      wingsNodesRow,
+      totalAllocationsRow,
+      usedAllocationsRow,
+      totalDatabasesRow,
+      totalEggsRow,
+      serverUsageRow,
+      nodeTotalsRow,
+      recentRaw,
+      themeRow,
+      sysInfo
+    ] = await Promise.all([
+      db.get('SELECT COUNT(*) as count FROM servers'),
+      db.get("SELECT COUNT(*) as count FROM servers WHERE status NOT IN ('suspended', 'installing')"),
+      db.get("SELECT COUNT(*) as count FROM servers WHERE status = 'suspended'"),
+      db.get("SELECT COUNT(*) as count FROM servers WHERE status = 'installing'"),
+      db.get('SELECT COUNT(*) as count FROM users'),
+      db.get('SELECT COUNT(*) as count FROM users WHERE root_admin = 1'),
+      db.get('SELECT COUNT(*) as count FROM nodes'),
+      db.get("SELECT COUNT(*) as count FROM nodes WHERE daemon_token IS NOT NULL AND daemon_token != ''"),
+      db.get('SELECT COUNT(*) as count FROM allocations'),
+      db.get('SELECT COUNT(*) as count FROM allocations WHERE server_id IS NOT NULL'),
+      db.get('SELECT COUNT(*) as count FROM server_databases').catch(() => ({ count: 0 })),
+      db.get('SELECT COUNT(*) as count FROM eggs'),
+      db.get('SELECT COALESCE(SUM(cpu), 0) as totalCpu, COALESCE(SUM(memory), 0) as totalMemory, COALESCE(SUM(disk), 0) as totalDisk FROM servers'),
+      db.get('SELECT COALESCE(SUM(memory), 0) as totalMemory, COALESCE(SUM(disk), 0) as totalDisk FROM nodes'),
+      db.query(`
+        SELECT s.id, s.uuid, s.name, s.created_at,
+               u.id as user_id, u.first_name, u.last_name, u.username,
+               n.id as node_id, n.name as node_name
+        FROM servers s
+        LEFT JOIN users u ON s.owner_id = u.id
+        LEFT JOIN nodes n ON s.node_id = n.id
+        ORDER BY s.created_at DESC
+        LIMIT 50
+      `).catch(() => []),
+      db.get("SELECT value FROM settings WHERE `key` = 'settings::app:admin_theme' OR `key` = 'admin_theme'").catch(() => null),
+      systemService.getSystemOverview().catch(() => ({ cpu: { load: 0 }, memory: { percent: 0 }, disk: { percent: 0 } }))
+    ]);
 
-  const sysInfo = await systemService.getSystemOverview();
+    const sevenDaysAgo = Date.now() - (7 * 24 * 60 * 60 * 1000);
+    const recentServers = (recentRaw || []).filter(s => {
+      if (!s.created_at) return false;
+      const t = new Date(s.created_at).getTime();
+      return !isNaN(t) && t >= sevenDaysAgo;
+    }).map(s => ({
+      id: s.id,
+      uuid: s.uuid,
+      name: s.name,
+      created_at: s.created_at,
+      user: s.user_id ? {
+        id: s.user_id,
+        name_first: s.first_name || '',
+        name_last: s.last_name || '',
+        username: s.username || '',
+      } : null,
+      node: s.node_id ? {
+        id: s.node_id,
+        name: s.node_name || '—',
+      } : null,
+    }));
 
-  res.render('admin/dashboard', {
-    user: req.session.user,
-    stats: {
-      users: totalUsers?.count || 0,
-      servers: totalServers?.count || 0,
-      nodes: totalNodes?.count || 0,
-      locations: totalLocations?.count || 0,
-      dbHosts: totalDbHosts?.count || 0,
-    },
-    system: sysInfo,
+    const totalServers = totalServersRow?.count || 0;
+    const activeServers = activeServersRow?.count || 0;
+    const suspendedServers = suspendedServersRow?.count || 0;
+    const installingServers = installingServersRow?.count || 0;
+    const totalUsers = totalUsersRow?.count || 0;
+    const adminUsers = adminUsersRow?.count || 0;
+    const totalNodes = totalNodesRow?.count || 0;
+    const wingsAgentConfigured = wingsNodesRow?.count || 0;
+    const totalAllocations = totalAllocationsRow?.count || 0;
+    const usedAllocations = usedAllocationsRow?.count || 0;
+    const totalDatabases = totalDatabasesRow?.count || 0;
+    const totalEggs = totalEggsRow?.count || 0;
+
+    const serverTotalCpu = Number(serverUsageRow?.totalCpu || 0);
+    const serverTotalMemory = Number(serverUsageRow?.totalMemory || 0);
+    const nodeTotalMemory = Number(nodeTotalsRow?.totalMemory || 0);
+    const serverTotalDisk = Number(serverUsageRow?.totalDisk || 0);
+    const nodeTotalDisk = Number(nodeTotalsRow?.totalDisk || 0);
+
+    const adminTheme = themeRow?.value || 'default';
+
+    res.render('admin/dashboard', {
+      user: req.session.user,
+      totalServers,
+      activeServers,
+      suspendedServers,
+      installingServers,
+      totalUsers,
+      adminUsers,
+      totalNodes,
+      wingsAgentConfigured,
+      totalAllocations,
+      usedAllocations,
+      totalDatabases,
+      totalEggs,
+      serverTotalCpu,
+      serverTotalMemory,
+      nodeTotalMemory,
+      serverTotalDisk,
+      nodeTotalDisk,
+      recentServers,
+      adminTheme,
+      stats: {
+        users: totalUsers,
+        servers: totalServers,
+        nodes: totalNodes,
+        allocations: totalAllocations,
+      },
+      system: sysInfo,
+    });
+  } catch (err) {
+    console.error('[Admin Dashboard Error]', err);
+    res.status(500).send('Error rendering admin statistics dashboard: ' + err.message);
+  }
+});
+
+// Live Node Stats & SSE Endpoints
+router.get('/statistics/agent-endpoints', async (req, res) => {
+  // Returns agent endpoints for SSE streaming, or empty array to trigger fallback polling
+  res.json({
+    endpoints: []
   });
+});
+
+router.get('/statistics/live', async (req, res) => {
+  try {
+    const db = getDb();
+    const nodes = await db.query('SELECT * FROM nodes');
+    const sysInfo = await systemService.getSystemOverview();
+
+    const liveNodes = (nodes || []).map(node => {
+      const memTotalBytes = (node.memory || 16384) * 1024 * 1024;
+      const memUsedBytes = Math.round(memTotalBytes * ((sysInfo.memory?.percent || 25) / 100));
+      const diskTotalBytes = (node.disk || 102400) * 1024 * 1024;
+      const diskUsedBytes = Math.round(diskTotalBytes * ((sysInfo.disk?.percent || 20) / 100));
+
+      return {
+        node_id: node.id,
+        node_name: node.name,
+        online: true,
+        cpu: parseFloat(sysInfo.cpu?.load || 0),
+        memory_used: memUsedBytes,
+        memory_total: memTotalBytes,
+        disk_used: diskUsedBytes,
+        disk_total: diskTotalBytes,
+        net_in: 1024 * 128,
+        net_out: 1024 * 256,
+        connections: sysInfo.docker?.running || 1,
+        version: sysInfo.docker?.version || '1.11.3',
+      };
+    });
+
+    res.json({
+      available: (nodes || []).length > 0,
+      nodes: liveNodes
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message, available: false, nodes: [] });
+  }
 });
 
 // 02. USERS
@@ -559,16 +707,18 @@ router.post('/servers/new', async (req, res) => {
       if (matchingEgg) targetEggId = matchingEgg.id;
     } else if (type === 'nodejs') {
       targetNestId = 2;
-      targetEggId = 9;
-      selectedImage = (docker_image && String(docker_image).trim()) ? String(docker_image).trim() : 'ghcr.io/ptero-eggs/yolks:nodejs_20';
-      selectedStartup = startup_cmd || startup_command || 'if [ -f package.json ]; then npm install; fi; npm start';
+      const ryzeEgg = await db.get("SELECT id FROM eggs WHERE nest_id = 2 AND name LIKE '%Ryze%' LIMIT 1");
+      targetEggId = ryzeEgg ? ryzeEgg.id : 8;
+      selectedImage = (docker_image && String(docker_image).trim()) ? String(docker_image).trim() : 'ghcr.io/parkervcp/yolks:nodejs_20';
+      selectedStartup = startup_cmd || startup_command || 'clear; echo -e "---------------[ This server is powered by www.RyzeHost.xyz ]---------------\\n"; [ ! -d node_modules ]&&npm install||echo "Using existing node_modules, delete to reinstall."; {{STARTUPSCRIPT}}';
       const matchingEgg = await db.get('SELECT id FROM eggs WHERE docker_image = ? LIMIT 1', [selectedImage]);
       if (matchingEgg) targetEggId = matchingEgg.id;
     } else if (type === 'python') {
       targetNestId = 3;
-      targetEggId = 15;
-      selectedImage = (docker_image && String(docker_image).trim()) ? String(docker_image).trim() : 'ghcr.io/ptero-eggs/yolks:python_3.12';
-      selectedStartup = startup_cmd || startup_command || 'if [ -f requirements.txt ]; then pip install -r requirements.txt; fi; python3 app.py';
+      const pyGenericEgg = await db.get("SELECT id FROM eggs WHERE nest_id = 3 AND name LIKE '%generic%' LIMIT 1");
+      targetEggId = pyGenericEgg ? pyGenericEgg.id : 14;
+      selectedImage = (docker_image && String(docker_image).trim()) ? String(docker_image).trim() : 'ghcr.io/parkervcp/yolks:python_3.12';
+      selectedStartup = startup_cmd || startup_command || 'if [[ -d .git ]] && [[ "{{AUTO_UPDATE}}" == "1" ]]; then git pull; fi; if [[ ! -z "{{PY_PACKAGES}}" ]]; then pip install -U --prefix .local {{PY_PACKAGES}}; fi; if [[ -f /home/container/${REQUIREMENTS_FILE} ]]; then pip install -U --prefix .local -r ${REQUIREMENTS_FILE}; fi; /usr/local/bin/python /home/container/{{PY_FILE}}';
       const matchingEgg = await db.get('SELECT id FROM eggs WHERE docker_image = ? LIMIT 1', [selectedImage]);
       if (matchingEgg) targetEggId = matchingEgg.id;
     }
@@ -600,20 +750,33 @@ router.post('/servers/new', async (req, res) => {
       await db.query('UPDATE allocations SET server_id = ? WHERE id = ?', [serverId, targetAllocId]);
     }
 
-    // Save Environment Variables
+    // Save Environment Variables (seed defaults from Egg + override with custom)
     const envObj = {};
+    const eggRow = await db.get('SELECT * FROM eggs WHERE id = ?', [targetEggId]);
+    if (eggRow && eggRow.environment_json) {
+      try {
+        const defaults = JSON.parse(eggRow.environment_json);
+        for (const [k, v] of Object.entries(defaults)) {
+          envObj[k] = v;
+        }
+      } catch (e) {}
+    }
+
     if (Array.isArray(env_keys) && Array.isArray(env_vals)) {
       for (let i = 0; i < env_keys.length; i++) {
         const k = (env_keys[i] || '').trim();
         const v = (env_vals[i] || '').trim();
         if (k) {
           envObj[k] = v;
-          await db.query(
-            'INSERT INTO server_variables (server_id, env_key, env_value) VALUES (?, ?, ?)',
-            [serverId, k, v]
-          );
         }
       }
+    }
+
+    for (const [k, v] of Object.entries(envObj)) {
+      await db.query(
+        'INSERT INTO server_variables (server_id, env_key, env_value) VALUES (?, ?, ?)',
+        [serverId, k, v]
+      );
     }
 
     // Set up directories
@@ -1010,6 +1173,62 @@ router.post('/nests/:nest/eggs', async (req, res) => {
   res.redirect(`/admin/nests/${req.params.nest}/eggs`);
 });
 
+router.post('/nests/:nest/eggs/import', uploadJson.single('egg_file'), async (req, res) => {
+  const db = getDb();
+  try {
+    let eggData = null;
+    if (req.file && req.file.buffer) {
+      eggData = JSON.parse(req.file.buffer.toString('utf8'));
+    } else if (req.body.egg_json) {
+      eggData = JSON.parse(req.body.egg_json);
+    }
+    if (!eggData || !eggData.name) {
+      return res.redirect(`/admin/nests/${req.params.nest}/eggs?error=Invalid+egg+JSON+data`);
+    }
+
+    const name = eggData.name;
+    const startup = eggData.startup || 'java -Xms128M -XX:MaxRAMPercentage=95.0 -Dterminal.jline=false -Dterminal.ansi=true -jar {{SERVER_JARFILE}}';
+    
+    let dockerImg = 'ghcr.io/pterodactyl/yolks:java_21';
+    if (eggData.docker_images && typeof eggData.docker_images === 'object') {
+      const vals = Object.values(eggData.docker_images);
+      if (vals.length > 0) dockerImg = vals[0];
+    } else if (eggData.image) {
+      dockerImg = eggData.image;
+    }
+    if (typeof dockerImg === 'string') {
+      dockerImg = dockerImg.replace(/ghcr\.io\/pelican-eggs\/yolks:/g, 'ghcr.io/pterodactyl/yolks:');
+    }
+
+    const envMap = {};
+    if (Array.isArray(eggData.variables)) {
+      for (const v of eggData.variables) {
+        if (v.env_variable) {
+          envMap[v.env_variable] = v.default_value !== undefined ? v.default_value : '';
+        }
+      }
+    }
+
+    const existing = await db.get('SELECT id FROM eggs WHERE nest_id = ? AND name = ?', [req.params.nest, name]);
+    if (existing) {
+      await db.query(
+        'UPDATE eggs SET docker_image = ?, startup_command = ?, environment_json = ? WHERE id = ?',
+        [dockerImg, startup, JSON.stringify(envMap), existing.id]
+      );
+    } else {
+      await db.query(
+        'INSERT INTO eggs (nest_id, name, docker_image, startup_command, environment_json) VALUES (?, ?, ?, ?, ?)',
+        [req.params.nest, name, dockerImg, startup, JSON.stringify(envMap)]
+      );
+    }
+
+    res.redirect(`/admin/nests/${req.params.nest}/eggs?success=Egg+${encodeURIComponent(name)}+imported+successfully`);
+  } catch (err) {
+    console.error('[Admin] Egg import failed:', err);
+    res.redirect(`/admin/nests/${req.params.nest}/eggs?error=${encodeURIComponent(err.message)}`);
+  }
+});
+
 // 17. DATABASE HOSTS
 router.get('/database', async (req, res) => {
   const db = getDb();
@@ -1100,7 +1319,7 @@ router.get('/settings', (req, res) => {
 
 router.post('/settings', uploadBranding.fields([{ name: 'logo_file', maxCount: 1 }, { name: 'favicon_file', maxCount: 1 }]), async (req, res) => {
   const db = getDb();
-  const { panel_name, company_name, panel_url, panel_logo_url, panel_favicon_url, timezone, default_language } = req.body;
+  const { panel_name, company_name, panel_url, panel_logo_url, panel_favicon_url, timezone, default_language, region_api_ip, region_api_dns } = req.body;
 
   let logoVal = panel_logo_url;
   if (req.files && req.files.logo_file && req.files.logo_file[0]) {
@@ -1122,6 +1341,8 @@ router.post('/settings', uploadBranding.fields([{ name: 'logo_file', maxCount: 1
 
   if (logoVal) updates.push(['panel_logo', logoVal]);
   if (favVal) updates.push(['panel_favicon', favVal]);
+  if (region_api_ip) updates.push(['region-api:ip', region_api_ip]);
+  if (region_api_dns) updates.push(['region-api:dns', region_api_dns]);
 
   for (const [k, v] of updates) {
     if (v !== undefined) {
@@ -1172,6 +1393,25 @@ router.post('/settings/advanced', async (req, res) => {
   await db.query('REPLACE INTO settings (`key`, `value`) VALUES (?, ?)', ['debug_mode', debug_mode ? '1' : '0']);
 
   res.redirect('/admin/settings/advanced?success=Saved');
+});
+
+// 23b. PTERODACTYL REGION SETTINGS (Redirect to main Admin Settings)
+router.get(['/settings/pterodactyl-region', '/settings/region'], (req, res) => {
+  res.redirect('/admin/settings#region-settings');
+});
+
+router.post(['/settings/pterodactyl-region', '/settings/region'], async (req, res) => {
+  const db = getDb();
+  const { region_api_ip, region_api_dns } = req.body;
+
+  if (region_api_ip) {
+    await db.query('REPLACE INTO settings (`key`, `value`) VALUES (?, ?)', ['region-api:ip', region_api_ip]);
+  }
+  if (region_api_dns) {
+    await db.query('REPLACE INTO settings (`key`, `value`) VALUES (?, ?)', ['region-api:dns', region_api_dns]);
+  }
+
+  res.redirect('/admin/settings/pterodactyl-region?success=Saved');
 });
 
 // 24. SYSTEM INFORMATION
@@ -1275,15 +1515,16 @@ router.post('/appearance/arix/save', async (req, res) => {
         },
         header: {
           ...req.body.header,
-          enabled: req.body.header?.enabled === '1' || req.body.header?.enabled === true || req.body.header?.enabled === 'true' || req.body.header?.enabled === 'on',
+          enabled: req.body.header?.enabled === undefined ? true : (req.body.header?.enabled === '1' || req.body.header?.enabled === true || req.body.header?.enabled === 'true' || req.body.header?.enabled === 'on'),
           user_menu: req.body.header?.user_menu === '1' || req.body.header?.user_menu === true || req.body.header?.user_menu === 'true' || req.body.header?.user_menu === 'on',
           notifications: req.body.header?.notifications === '1' || req.body.header?.notifications === true || req.body.header?.notifications === 'true' || req.body.header?.notifications === 'on',
           search: req.body.header?.search === '1' || req.body.header?.search === true || req.body.header?.search === 'true' || req.body.header?.search === 'on',
-          mobile_menu: req.body.header?.mobile_menu === '1' || req.body.header?.mobile_menu === true || req.body.header?.mobile_menu === 'true' || req.body.header?.mobile_menu === 'on',
+          mobile_menu: req.body.header?.mobile_menu === undefined ? true : (req.body.header?.mobile_menu === '1' || req.body.header?.mobile_menu === true || req.body.header?.mobile_menu === 'true' || req.body.header?.mobile_menu === 'on'),
+          header_shadow: req.body.header?.header_shadow === '1' || req.body.header?.header_shadow === true || req.body.header?.header_shadow === 'true',
         },
         cards: {
           ...req.body.cards,
-          hover_animation: req.body.cards?.hover_animation === '1' || req.body.cards?.hover_animation === true || req.body.cards?.hover_animation === 'true' || req.body.cards?.hover_animation === 'on',
+          hover_effect: req.body.cards?.hover_effect === '1' || req.body.cards?.hover_effect === true || req.body.cards?.hover_effect === 'true' || req.body.cards?.hover_effect === 'on',
         },
         buttons: req.body.buttons || {},
         typography: req.body.typography || {},

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="44" height="44">
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  <!-- Isometric 3D Cube -->
+  <g filter="url(#shadow)">
+    <!-- Top Face (Grass) -->
+    <polygon points="32,6 58,20 32,34 6,20" fill="#5cb82e" />
+    <polygon points="32,6 45,13 32,20 19,13" fill="#6bcc33" />
+    <polygon points="26,10 32,13 26,17 20,14" fill="#78db38" />
+    <polygon points="38,16 44,19 38,23 32,20" fill="#55aa2a" />
+    <polygon points="12,17 18,20 12,24 6,20" fill="#4d9925" />
+    <polygon points="44,12 50,15 44,19 38,16" fill="#6bcc33" />
+    <polygon points="26,24 32,27 26,31 20,27" fill="#78db38" />
+    <polygon points="32,20 38,23 32,27 26,24" fill="#64c02f" />
+    <polygon points="38,23 51,30 38,37 25,30" fill="#53a528" opacity="0.3" />
+
+    <!-- Left Face (Dirt + Grass side) -->
+    <polygon points="6,20 32,34 32,58 6,44" fill="#79553a" />
+    <!-- Dirt texture left -->
+    <polygon points="12,33 18,36 18,42 12,39" fill="#5c3e28" />
+    <polygon points="20,40 26,43 26,49 20,46" fill="#5c3e28" />
+    <polygon points="8,40 14,43 14,47 8,44" fill="#8c6546" />
+    <polygon points="22,48 28,51 28,56 22,53" fill="#4a3220" />
+    <!-- Grass side layer left -->
+    <polygon points="6,20 32,34 32,40 28,38 28,42 22,39 22,43 16,40 16,38 12,41 12,35 6,32" fill="#4d9925" />
+    <polygon points="6,20 32,34 32,38 29,36 29,40 23,37 23,41 17,38 17,37 13,39 13,34 6,30" fill="#5cb82e" />
+
+    <!-- Right Face (Dirt + Grass side shaded) -->
+    <polygon points="32,34 58,20 58,44 32,58" fill="#5c3e28" />
+    <!-- Dirt texture right -->
+    <polygon points="38,36 44,33 44,39 38,42" fill="#4a3220" />
+    <polygon points="46,43 52,40 52,46 46,49" fill="#79553a" />
+    <polygon points="36,46 42,43 42,49 36,52" fill="#3d2819" />
+    <!-- Grass side layer right -->
+    <polygon points="32,34 58,20 58,32 52,35 52,41 48,38 48,40 42,43 42,39 36,42 36,38 32,40" fill="#3c7a1c" />
+    <polygon points="32,34 58,20 58,30 53,33 53,39 49,36 49,38 43,41 43,37 37,40 37,36 32,38" fill="#4d9925" />
+  </g>
+</svg>

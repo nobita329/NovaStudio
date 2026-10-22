@@ -1,12 +1,14 @@
 #!/usr/bin/env node
 const { initDb } = require('../src/database');
 const { applySchema } = require('../src/database/schema');
+const themeService = require('../src/services/themeService');
 
 async function run() {
   console.log('[Nova] Initializing database migration...');
   try {
     const db = await initDb();
     await applySchema(db);
+    await themeService.init();
     console.log('✅ [Nova] Database migration and seed completed successfully!');
     process.exit(0);
   } catch (err) {

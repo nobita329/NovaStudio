@@ -62,7 +62,7 @@ $currentPath = $currentPath ?? '';
           </a>
         </li>
         <li>
-          <a href="/admin/appearance" class="nav-link <?= strpos($currentPath, '/admin/appearance') !== false ? 'active' : '' ?>">
+          <a href="/admin/appearance" class="nav-link <?= ($currentPath === '/admin/appearance' || $currentPath === '/admin/appearance/themes') ? 'active' : '' ?>">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4 5 5 0 013-4.5 4 4 0 011.5-3.5 4 4 0 014-4 4 4 0 014 4 4 4 0 011.5 3.5 5 5 0 013 4.5 4 4 0 01-4 4H7z"></path></svg>
             Appearance
           </a>

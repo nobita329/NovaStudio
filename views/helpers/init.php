@@ -44,3 +44,28 @@ if (!function_exists('statusBadge')) {
         return '<span class="status-badge ' . $cls . '"><span class="badge-dot"></span>' . ucfirst($status) . '</span>';
     }
 }
+
+if (!function_exists('route')) {
+    function route($name, $params = null) {
+        $routes = [
+            'admin.index' => '/admin',
+            'admin.dashboard' => '/admin',
+            'admin.users' => '/admin/users',
+            'admin.users.view' => '/admin/users/view/' . ($params ?? ''),
+            'admin.servers' => '/admin/servers',
+            'admin.servers.view' => '/admin/servers/view/' . ($params ?? ''),
+            'admin.nodes' => '/admin/nodes',
+            'admin.nodes.view' => '/admin/nodes/view/' . ($params ?? ''),
+            'admin.statistics.agent-endpoints' => '/admin/statistics/agent-endpoints',
+            'admin.statistics.live' => '/admin/statistics/live',
+        ];
+        if (isset($routes[$name])) {
+            return $routes[$name];
+        }
+        $url = '/' . str_replace('.', '/', $name);
+        if ($params !== null && $params !== '') {
+            $url .= '/' . (is_array($params) ? implode('/', $params) : $params);
+        }
+        return $url;
+    }
+}

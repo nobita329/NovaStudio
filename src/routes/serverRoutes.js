@@ -102,6 +102,48 @@ router.post('/power', async (req, res) => {
   }
 });
 
+// Live Stats
+router.get('/stats', async (req, res) => {
+  try {
+    const stats = await dockerService.getServerStats(req.server.id);
+    res.json({ success: true, data: stats });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Server Region (Pterodactyl Region)
+router.get('/region', async (req, res) => {
+  const db = getDb();
+  try {
+    const server = req.server;
+    const [allocation, node, ipSetting, dnsSetting] = await Promise.all([
+      db.get('SELECT * FROM allocations WHERE id = ?', [server.allocation_id]),
+      db.get('SELECT * FROM nodes WHERE id = ?', [server.node_id]),
+      db.get("SELECT value FROM settings WHERE `key` = 'region-api:ip'").catch(() => null),
+      db.get("SELECT value FROM settings WHERE `key` = 'region-api:dns'").catch(() => null)
+    ]);
+
+    const ipApi = ipSetting?.value || 'ipwho.is';
+    const dnsApi = dnsSetting?.value || 'DNS-Google';
+    const serverIp = allocation?.ip_alias || allocation?.ip_address || node?.fqdn || '127.0.0.1';
+
+    res.json({
+      success: true,
+      data: {
+        server_ip: serverIp,
+        ip_api: ipApi,
+        dns_api: dnsApi,
+        node_name: node?.name || 'Local Node',
+        node_fqdn: node?.fqdn || 'localhost',
+        location_id: node?.location_id || 1
+      }
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Command
 router.post('/command', async (req, res) => {
   const { command } = req.body;
@@ -572,31 +614,73 @@ router.get('/startup', async (req, res) => {
       desc: 'The build number for the paper release. Leave at latest to always get the latest version. Invalid versions will default to latest.',
       defaultVal: 'latest'
     });
+    variablesList.push({
+      key: 'DL_PATH',
+      name: 'DOWNLOAD PATH',
+      desc: 'A URL to use to download a server.jar rather than the ones in the install script. Leave empty for default.',
+      defaultVal: ''
+    });
   } else if (isNode) {
+    variablesList.push({
+      key: 'startupscript',
+      name: 'STARTUP SCRIPT',
+      desc: 'Command or entrypoint script to run your Node.js application (e.g. node main.js or npm start).',
+      defaultVal: 'node main.js'
+    });
     variablesList.push({
       key: 'MAIN_FILE',
       name: 'MAIN FILE',
       desc: 'The entrypoint javascript file for your Node.js application.',
-      defaultVal: 'index.js'
+      defaultVal: 'main.js'
     });
     variablesList.push({
       key: 'USER_UPLOAD',
-      name: 'INSTALL PACKAGES',
-      desc: 'Automatically run npm install on startup.',
-      defaultVal: 'true'
+      name: 'USER UPLOADED FILES',
+      desc: 'Skip all installer steps if you are uploading your own files (0 = false, 1 = true).',
+      defaultVal: '0'
     });
   } else if (isPython) {
     variablesList.push({
-      key: 'MAIN_FILE',
-      name: 'MAIN FILE',
-      desc: 'The entrypoint script for your Python application.',
+      key: 'PY_FILE',
+      name: 'APP PY FILE',
+      desc: 'The entrypoint file that starts the Python application (e.g. app.py).',
       defaultVal: 'app.py'
     });
     variablesList.push({
-      key: 'REQUIREMENTS',
+      key: 'REQUIREMENTS_FILE',
       name: 'REQUIREMENTS FILE',
-      desc: 'File containing dependencies to install via pip.',
+      desc: 'File containing dependencies to install via pip (e.g. requirements.txt).',
       defaultVal: 'requirements.txt'
+    });
+    variablesList.push({
+      key: 'AUTO_UPDATE',
+      name: 'AUTO UPDATE',
+      desc: 'Pull latest files on startup when using a GitHub repository (0 or 1).',
+      defaultVal: '0'
+    });
+    variablesList.push({
+      key: 'USER_UPLOAD',
+      name: 'USER UPLOADED FILES',
+      desc: 'Skip all installer steps if you are uploading your own files (0 = false, 1 = true).',
+      defaultVal: '0'
+    });
+    variablesList.push({
+      key: 'PY_PACKAGES',
+      name: 'ADDITIONAL PYTHON PACKAGES',
+      desc: 'Additional Python packages to install via pip (space-separated).',
+      defaultVal: ''
+    });
+    variablesList.push({
+      key: 'GIT_ADDRESS',
+      name: 'GIT REPO ADDRESS',
+      desc: 'Git repository to clone on initialization (optional).',
+      defaultVal: ''
+    });
+    variablesList.push({
+      key: 'BRANCH',
+      name: 'GIT BRANCH',
+      desc: 'Branch to pull from repository (default is empty for default branch).',
+      defaultVal: ''
     });
   }
 
@@ -615,12 +699,32 @@ router.get('/startup', async (req, res) => {
     }
   }
 
+  const alloc = req.server.allocation_id ? await db.get('SELECT * FROM allocations WHERE id = ?', [req.server.allocation_id]) : null;
+
+  let rawCmd = req.server.startup_command || (egg ? egg.startup_command : 'java -Xms128M -XX:MaxRAMPercentage=95.0 -Dterminal.jline=false -Dterminal.ansi=true -jar {{SERVER_JARFILE}}');
+  let fullCommand = rawCmd;
+  fullCommand = fullCommand.replace(/{{SERVER_MEMORY}}/g, (req.server.memory || 1024).toString());
+  fullCommand = fullCommand.replace(/{{SERVER_PORT}}/g, (alloc ? alloc.port : 25565).toString());
+  fullCommand = fullCommand.replace(/{{SERVER_IP}}/g, '0.0.0.0');
+
+  const jarVal = varMap['SERVER_JARFILE'] || varMap['SERVER.JAR'] || varMap['SERVER_JAR'] || 'server.jar';
+  fullCommand = fullCommand.replace(/{{SERVER_JARFILE}}/gi, jarVal);
+  fullCommand = fullCommand.replace(/{{SERVER\.JAR}}/gi, jarVal);
+  fullCommand = fullCommand.replace(/{{SERVER_JAR}}/gi, jarVal);
+
+  for (const [k, v] of Object.entries(varMap)) {
+    const esc = k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    fullCommand = fullCommand.replace(new RegExp(`{{${esc}}}`, 'gi'), String(v));
+  }
+
   res.render('user/startup', {
     user: req.session.user,
     server: req.server,
+    alloc,
     egg,
     allEggs: allEggs || [],
     variablesList,
+    fullCommand,
     success: req.query.success || null,
   });
 });

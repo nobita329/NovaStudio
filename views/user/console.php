@@ -210,6 +210,19 @@ require_once __DIR__ . '/../layouts/sidebar_user.php';
             <div class="metric-value-text" id="metric-net-out">0.00 KiB</div>
           </div>
         </div>
+
+        <!-- 8. Region (Pterodactyl Region) -->
+        <div class="nova-metric-card" id="card-region" title="Click to copy Region info" style="cursor: pointer;">
+          <div class="metric-icon-wrap" id="region-flag-wrap">
+            <svg id="region-default-icon" width="17" height="17" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          </div>
+          <div class="metric-details">
+            <div class="metric-label">Region</div>
+            <div class="metric-value-text" id="stat-region" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+              <span id="region-country" style="font-weight: 600; color: #ffffff;">Detecting...</span><span class="metric-limit-dim" id="region-city"></span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -265,6 +278,205 @@ require_once __DIR__ . '/../layouts/sidebar_user.php';
 document.addEventListener('DOMContentLoaded', () => {
   window.novaCli = new NovaConsole('<?= e($server['id']) ?>', '<?= strtolower($server['status'] ?? 'offline') ?>');
 });
+
+// Pterodactyl Region Addon Detector
+(function initPterodactylRegion() {
+  const serverId = '<?= e($server['id']) ?>';
+  const serverIp = '<?= e($allocation['ip_alias'] ?? $allocation['ip_address'] ?? '127.0.0.1') ?>';
+  const nodeFqdn = '<?= e($node['fqdn'] ?? '') ?>';
+  const ipApiChoice = '<?= e($settings['region-api:ip'] ?? 'ipwho.is') ?>';
+  const dnsApiChoice = '<?= e($settings['region-api:dns'] ?? 'DNS-Google') ?>';
+
+  const flagWrap = document.getElementById('region-flag-wrap');
+  const countryEl = document.getElementById('region-country');
+  const cityEl = document.getElementById('region-city');
+  const cardRegion = document.getElementById('card-region');
+
+  if (!flagWrap || !countryEl) return;
+
+  let currentRegionText = '';
+
+  if (cardRegion) {
+    cardRegion.addEventListener('click', () => {
+      if (currentRegionText) {
+        navigator.clipboard.writeText(currentRegionText).then(() => {
+          if (typeof window.showNotification === 'function') {
+            window.showNotification('Copied', `Region copied: ${currentRegionText}`, 'success');
+          }
+        }).catch(() => {});
+      }
+    });
+  }
+
+  const cacheKey = `pterodactyl_region_${serverId}_${serverIp}`;
+  const cached = sessionStorage.getItem(cacheKey);
+  if (cached) {
+    try {
+      const data = JSON.parse(cached);
+      applyRegion(data);
+      return;
+    } catch(e) {}
+  }
+
+  function isLocalIP(ip) {
+    if (!ip) return true;
+    const patterns = [
+      /^127\./,
+      /^10\./,
+      /^192\.168\./,
+      /^172\.(1[6-9]|2\d|3[0-1])\./,
+      /^::1$/,
+      /^fe80:/,
+      /^0\./,
+      /^localhost$/i
+    ];
+    return patterns.some(p => p.test(ip));
+  }
+
+  const IPAPIs = {
+    'ipwho.is': {
+      buildUrl: (ip) => ip ? `https://ipwho.is/${ip}` : 'https://ipwho.is/',
+      parse: (d) => (d && d.success !== false && (d.country || d.country_code)) ? {
+        country_name: d.country || d.country_code,
+        country_code: (d.country_code || '').toUpperCase(),
+        city: d.city || ''
+      } : null
+    },
+    'ipapi.co': {
+      buildUrl: (ip) => ip ? `https://ipapi.co/${ip}/json/` : 'https://ipapi.co/json/',
+      parse: (d) => (d && (d.country_name || d.country_code)) ? {
+        country_name: d.country_name || d.country_code,
+        country_code: (d.country_code || '').toUpperCase(),
+        city: d.city || ''
+      } : null
+    },
+    'ipapi.is': {
+      buildUrl: (ip) => ip ? `https://api.ipapi.is/?q=${ip}` : 'https://api.ipapi.is/',
+      parse: (d) => (d && d.location) ? {
+        country_name: d.location.country || d.location.country_code,
+        country_code: (d.location.country_code || '').toUpperCase(),
+        city: d.location.city || ''
+      } : null
+    },
+    'geoiplookup.io': {
+      buildUrl: (ip) => ip ? `https://json.geoiplookup.io/${ip}` : 'https://json.geoiplookup.io/',
+      parse: (d) => (d && (d.country_name || d.country_code)) ? {
+        country_name: d.country_name || d.country_code,
+        country_code: (d.country_code || '').toUpperCase(),
+        city: d.city || ''
+      } : null
+    }
+  };
+
+  const DNSAPIs = {
+    'DNS-Cloudflare': async (hostname) => {
+      try {
+        const res = await fetch(`https://cloudflare-dns.com/dns-query?name=${encodeURIComponent(hostname)}&type=A`, {
+          headers: { 'Accept': 'application/dns-json' }
+        });
+        const data = await res.json();
+        const a = data?.Answer?.find(ans => ans.type === 1);
+        return a ? a.data : null;
+      } catch(e) { return null; }
+    },
+    'DNS-Google': async (hostname) => {
+      try {
+        const res = await fetch(`https://dns.google/resolve?name=${encodeURIComponent(hostname)}`);
+        const data = await res.json();
+        return (data && data.Status === 0 && data.Answer && data.Answer[0]) ? data.Answer[0].data : null;
+      } catch(e) { return null; }
+    }
+  };
+
+  function applyRegion(info) {
+    if (!info) return;
+    const country = info.country_name || 'Unknown';
+    const city = info.city || '';
+    currentRegionText = city ? `${country}, ${city}` : country;
+
+    if (countryEl) countryEl.textContent = country;
+    if (cityEl) {
+      cityEl.textContent = city ? `, ${city}` : '';
+    }
+    if (cardRegion) {
+      cardRegion.title = `Region: ${currentRegionText} (Click to copy)`;
+    }
+
+    if (flagWrap && info.country_code) {
+      const code = info.country_code.toUpperCase();
+      const flagImg = document.createElement('img');
+      flagImg.src = `/assets/regions/${code}.svg`;
+      flagImg.alt = code;
+      flagImg.style.width = '20px';
+      flagImg.style.height = '20px';
+      flagImg.style.objectFit = 'contain';
+      flagImg.style.borderRadius = '3px';
+      flagImg.onerror = function() {
+        flagWrap.innerHTML = '<svg width="17" height="17" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>';
+      };
+      flagWrap.innerHTML = '';
+      flagWrap.appendChild(flagImg);
+    }
+  }
+
+  async function resolveAndFetch() {
+    let targetIp = serverIp;
+    const ipMatcher = /^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$/;
+
+    // 1. If local IP, check node FQDN or browser hostname
+    if (isLocalIP(targetIp)) {
+      if (nodeFqdn && !isLocalIP(nodeFqdn)) {
+        targetIp = nodeFqdn;
+      } else {
+        const myHost = window.location.hostname;
+        if (!isLocalIP(myHost)) {
+          targetIp = myHost;
+        }
+      }
+    }
+
+    // 2. If target is a hostname, resolve to IP via DNS API
+    let lookupIp = targetIp;
+    if (!isLocalIP(targetIp) && !ipMatcher.test(targetIp)) {
+      const dnsResolver = DNSAPIs[dnsApiChoice] || DNSAPIs['DNS-Google'];
+      const resolved = await dnsResolver(targetIp);
+      if (resolved) lookupIp = resolved;
+    }
+
+    // If still local, pass empty string to lookup requesting public IP
+    const queryIp = isLocalIP(lookupIp) ? '' : lookupIp;
+
+    const primaryApi = IPAPIs[ipApiChoice] || IPAPIs['ipwho.is'];
+    const apisToTry = [primaryApi, IPAPIs['ipwho.is'], IPAPIs['ipapi.co'], IPAPIs['geoiplookup.io']];
+
+    for (const api of apisToTry) {
+      try {
+        const url = api.buildUrl(queryIp);
+        const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
+        if (res.ok) {
+          const data = await res.json();
+          const info = api.parse(data);
+          if (info && info.country_name) {
+            sessionStorage.setItem(cacheKey, JSON.stringify(info));
+            applyRegion(info);
+            return;
+          }
+        }
+      } catch(err) {
+        // try fallback
+      }
+    }
+
+    // Default fallback
+    applyRegion({
+      country_name: 'Local Node',
+      country_code: '',
+      city: 'Localhost'
+    });
+  }
+
+  resolveAndFetch();
+})();
 </script>
 
 <?php require_once __DIR__ . '/../layouts/footer.php'; ?>

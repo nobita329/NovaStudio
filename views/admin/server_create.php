@@ -149,9 +149,9 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST' && isset($_POST['action'])) {
             $customDockerImage = trim($_POST['custom_docker_image'] ?? '');
             $dockerImage = $customDockerImage !== '' ? $customDockerImage : trim($_POST['docker_image'] ?? '');
             if ($srvType === 'nodejs' && empty($dockerImage)) {
-                $dockerImage = 'ghcr.io/ptero-eggs/yolks:nodejs_20';
+                $dockerImage = 'ghcr.io/parkervcp/yolks:nodejs_20';
             } elseif ($srvType === 'python' && empty($dockerImage)) {
-                $dockerImage = 'ghcr.io/ptero-eggs/yolks:python_3.12';
+                $dockerImage = 'ghcr.io/parkervcp/yolks:python_3.12';
             }
             $startupCmd = trim($_POST['startup_cmd'] ?? '');
             
@@ -847,14 +847,14 @@ $panelName = $publicSettings['panel_name'] ?? 'Nova';
         desc: 'High-performance paper/purpur gaming instance'
       },
       nodejs: {
-        defaultImage: 'ghcr.io/ptero-eggs/yolks:nodejs_20',
-        defaultCmd: 'if [ -f package.json ]; then npm install; fi; npm start',
+        defaultImage: 'ghcr.io/parkervcp/yolks:nodejs_20',
+        defaultCmd: 'clear; echo -e "---------------[ This server is powered by www.RyzeHost.xyz ]---------------\\n"; [ ! -d node_modules ]&&npm install||echo "Using existing node_modules, delete to reinstall."; {{STARTUPSCRIPT}}',
         namePrefix: 'Node.js Express App',
         desc: 'Ultra-low latency Node.js microservice / Discord bot'
       },
       python: {
-        defaultImage: 'ghcr.io/ptero-eggs/yolks:python_3.12',
-        defaultCmd: 'if [ -f requirements.txt ]; then pip install -r requirements.txt; fi; python3 app.py',
+        defaultImage: 'ghcr.io/parkervcp/yolks:python_3.12',
+        defaultCmd: 'if [[ -d .git ]] && [[ "{{AUTO_UPDATE}}" == "1" ]]; then git pull; fi; if [[ ! -z "{{PY_PACKAGES}}" ]]; then pip install -U --prefix .local {{PY_PACKAGES}}; fi; if [[ -f /home/container/${REQUIREMENTS_FILE} ]]; then pip install -U --prefix .local -r ${REQUIREMENTS_FILE}; fi; /usr/local/bin/python /home/container/{{PY_FILE}}',
         namePrefix: 'Python Flask App',
         desc: 'High-speed Python application container'
       }
@@ -885,10 +885,12 @@ $panelName = $publicSettings['panel_name'] ?? 'Nova';
           javaSelect.disabled = (type !== 'minecraft');
         }
         document.getElementById('startup_cmd').placeholder = 'Auto: ' + conf.defaultCmd;
-        if (!document.getElementById('srv_name').value) {
+        const nameInput = document.getElementById('srv_name');
+        if (!nameInput.value || nameInput.value.startsWith('Minecraft') || nameInput.value.startsWith('Node') || nameInput.value.startsWith('Python')) {
           generateServerName();
         }
-        if (!document.getElementById('srv_desc').value) {
+        const descInput = document.getElementById('srv_desc');
+        if (!descInput.value || descInput.value.includes('gaming') || descInput.value.includes('Node') || descInput.value.includes('Python')) {
           generateServerDesc();
         }
       }

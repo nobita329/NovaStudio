@@ -1,0 +1,117 @@
+{
+  "name": "Arix Theme",
+  "version": "2.1.3",
+  "author": "Arix Team",
+  "description": "Official authentic Arix v2.1.3 theme integration for Nova Panel.",
+  "defaults": {
+    "general": {
+      "theme_name": "Arix Theme",
+      "theme_version": "2.1.3",
+      "author": "Arix Team",
+      "panel_name": "Nova",
+      "logo": "/arix/Arix.png",
+      "favicon": "/arix/Arix.png",
+      "login_logo": "/arix/Arix.png",
+      "login_background": "/arix/background-login.png",
+      "footer_text": "Powered by Nova & Arix Theme v2.1.3",
+      "page_title": "Arix",
+      "default_mode": "dark",
+      "custom_css": "",
+      "custom_js": ""
+    },
+    "colors": {
+      "primary": "#4A35CF",
+      "secondary": "#2b2b48",
+      "accent": "#7562f0",
+      "background": "#040519",
+      "surface": "#0B0D2A",
+      "surface_secondary": "#15183d",
+      "card": "#1D1D37",
+      "border": "#42425B",
+      "text": "#F4F4F4",
+      "text_muted": "#8282A4",
+      "success": "#1f8f2b",
+      "warning": "#B45309",
+      "danger": "#8f1f37",
+      "info": "#0284c7",
+      "sidebar": "#080922",
+      "header": "#080922"
+    },
+    "typography": {
+      "font_family": "'Inter', 'IBM Plex Sans', sans-serif",
+      "heading_font": "'Inter', sans-serif",
+      "body_font": "'Inter', sans-serif",
+      "font_size": "14",
+      "heading_size": "20",
+      "font_weight": "500",
+      "line_height": "1.5",
+      "letter_spacing": "0"
+    },
+    "sidebar": {
+      "enabled": true,
+      "width": 260,
+      "collapsed_width": 72,
+      "background": "#080922",
+      "border": "#42425B",
+      "logo": "/arix/Arix.png",
+      "logo_width": 120,
+      "menu_spacing": 4,
+      "menu_font_size": 14,
+      "icon_size": 20,
+      "active_bg": "#4A35CF",
+      "active_text": "#ffffff",
+      "hover_bg": "rgba(74, 53, 207, 0.15)",
+      "hover_text": "#ffffff",
+      "border_radius": 14,
+      "collapsed": false
+    },
+    "header": {
+      "enabled": true,
+      "height": 64,
+      "background": "rgba(8, 9, 34, 0.8)",
+      "border": "#42425B",
+      "logo": true,
+      "search": true,
+      "notifications": true,
+      "user_menu": true,
+      "mobile_menu": true,
+      "header_shadow": true,
+      "header_radius": 0
+    },
+    "cards": {
+      "background": "#1D1D37",
+      "border": "#42425B",
+      "border_width": 1,
+      "radius": 10,
+      "shadow": "0 8px 24px rgba(0,0,0,0.4)",
+      "padding": 20,
+      "hover_effect": true,
+      "hover_transform": "-2px"
+    },
+    "buttons": {
+      "radius": 7,
+      "height": 38,
+      "font_size": 14,
+      "primary": "#4A35CF",
+      "primary_text": "#ffffff",
+      "primary_border": "#7562f0",
+      "secondary": "#2b2b48",
+      "secondary_text": "#B2B2C1",
+      "success": "#1f8f2b",
+      "warning": "#B45309",
+      "danger": "#8f1f37",
+      "outline": "transparent",
+      "ghost": "transparent"
+    },
+    "layout": {
+      "container_width": 1400,
+      "page_spacing": 24,
+      "sidebar_spacing": 16,
+      "card_spacing": 16,
+      "grid_columns": 3,
+      "border_radius": 10,
+      "shadows": true
+    }
+  }
+}
+

@@ -37,7 +37,7 @@ jobs:
             PKG_VER=$(node -p "try { require('./package.json').version } catch(e) { '1.0.0' }")
             TAG_NAME="v${PKG_VER}"
             if git rev-parse "$TAG_NAME" >/dev/null 2>&1; then
-              TAG_NAME="v${PKG_VER}-$(git rev-parse --short HEAD)"
+              TAG_NAME="v${PKG_VER}-build.${{ github.run_number }}"
             fi
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"

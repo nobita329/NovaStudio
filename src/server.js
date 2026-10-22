@@ -20,11 +20,13 @@ const userRoutes = require('./routes/userRoutes');
 const serverRoutes = require('./routes/serverRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const apiRoutes = require('./routes/apiRoutes');
+const themeService = require('./services/themeService');
 
 async function bootstrap() {
   // 1. Initialize DB & seed
   const db = await initDb();
   await applySchema(db);
+  await themeService.init();
 
   // 2. Initialize background services
   await initCronService();

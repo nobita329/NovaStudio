@@ -13,10 +13,16 @@ require_once __DIR__ . '/../layouts/sidebar_admin.php';
         <h1 class="page-title">Eggs in Nest: <?= e($nest['name']) ?></h1>
         <p class="page-description">Container definitions, Docker images, and startup templates.</p>
       </div>
-      <button type="button" class="btn btn-primary" onclick="document.getElementById('modal-new-egg').style.display='flex'">
-        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-        New Egg
-      </button>
+      <div style="display: flex; gap: 0.5rem;">
+        <button type="button" class="btn btn-secondary" onclick="document.getElementById('modal-import-egg').style.display='flex'">
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+          Import Egg (JSON)
+        </button>
+        <button type="button" class="btn btn-primary" onclick="document.getElementById('modal-new-egg').style.display='flex'">
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+          New Egg
+        </button>
+      </div>
     </div>
 
     <div class="table-responsive">
@@ -68,6 +74,27 @@ require_once __DIR__ . '/../layouts/sidebar_admin.php';
           <div style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 1.25rem;">
             <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('modal-new-egg').style.display='none'">Cancel</button>
             <button type="submit" class="btn btn-primary btn-sm">Create Egg</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- Modal Import Egg -->
+    <div id="modal-import-egg" style="display:none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 999; align-items: center; justify-content: center; padding: 1rem;">
+      <div style="background: var(--bg-card); width: 100%; max-width: 580px; border-radius: var(--radius-lg); border: 1px solid var(--border-color); padding: 1.5rem; max-height: 90vh; overflow-y: auto;">
+        <h3 style="margin-bottom: 0.5rem; color: #fff;">Import Egg (Pterodactyl / Pelican JSON)</h3>
+        <p style="font-size: 0.8rem; color: var(--text-dim); margin-bottom: 1rem;">Upload a JSON file or paste the raw egg JSON configuration below.</p>
+        <form action="/admin/nests/<?= e($nest['id']) ?>/eggs/import" method="POST" enctype="multipart/form-data">
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label class="form-label">Upload JSON File</label>
+            <input type="file" name="egg_file" class="form-control" accept=".json,application/json">
+          </div>
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label class="form-label">Or Paste Egg JSON Content</label>
+            <textarea name="egg_json" class="form-control" rows="8" placeholder='{ "name": "Paper", ... }' style="font-family: var(--font-mono); font-size: 0.8rem;"></textarea>
+          </div>
+          <div style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 1.25rem;">
+            <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('modal-import-egg').style.display='none'">Cancel</button>
+            <button type="submit" class="btn btn-primary btn-sm">Import Egg</button>
           </div>
         </form>
       </div>
